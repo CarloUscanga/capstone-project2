@@ -1,52 +1,74 @@
 {
-    "image1": {
+    "myImages.image1": {
+        "id": "myImages.image1",
         "data": "hwQIAAgAAADw//8P/1VV/19fVfVfVfX1X1VV9V9fVfX/VVX/8P//Dw==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Wilson"
     },
-    "image2": {
+    "myImages.image2": {
+        "id": "myImages.image2",
         "data": "hwQOAA4AAAAAAA/wAA8AAADwAA/wAAAAAPAADw/wDwAAAA8PDw8AAAAA8P//AAAAAAD///IPAAAAAP///wAAAAAA////AAAAAAD///IPAAAAAPD//wAAAAAADw8PDwAAAPAADw/wDwAA8AAP8AAAAAAAD/AADwAA",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Spider"
     },
-    "image6": {
+    "myImages.image6": {
+        "id": "myImages.image6",
         "data": "hwQQABAAAAAAAAAzMwMAAAAAMFUjMzMzAAAwVSUiIjIAMDBTJTMzMwAwMDMzAzMzADMzmZkz8/8A45OXmTP/PwDjM5mZOf8/MOM+eTk5//8w7u6TmTn//zDu7jOZM/8/4O7uPjkz/z/j7uPuMzAz/+4zMzMDADMz7gMAMAMAAAAzAAAAAAAAAA==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Wizard"
     },
-    "image5": {
+    "myImages.image5": {
+        "id": "myImages.image5",
         "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAIAADAAAAAAAgAAMwAAAAACAAAzMzMAMAIAMDMndzMzAgAwPnd38z8zADA+Jzfz//8z4z53d/P//z/jPnN3M/P/P+PuMzMAMzM/4zMzAwAAMgMzAzAzAEAEADAzADAAQEQAADADAAAARAAAAAAAAAAABA==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Witch"
     },
-    "image7": {
+    "myImages.image7": {
+        "id": "myImages.image7",
         "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADMDAAAAAAAAswMAAAAAAACzMwMAADMzALOzAwAw4jszs7MDADO+sTu7szMzI+K7O7u7878jvrsxu7vzM+Mbuzu7u/MDM767O7u7/zMwszszu7v/vwAzAwAzMzMzAAAAAAAAAAAAAAAAAAAAAA==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Zombie"
     },
-    "image4": {
+    "myImages.image4": {
+        "id": "myImages.image4",
         "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAADdDQAAAAAAAADdDQQAAAAAAADdBAAAABERAEBBAAAAMREBEAAAAAAREQABAAAAABETAQEBEREAEREQEREBAAAAAAAxMzMRAAAAADFENAAAAAAAMNQ0AAAAAAAwRDMAAAAAADAzAwAAAAAAAAAAAA==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Skeleton"
     },
-    "image8": {
+    "myImages.image8": {
+        "id": "myImages.image8",
         "data": "hwQQABAAAAAAAAAAAAAAAAAAMDMzMwAAADAzNEQ0AAAAM0QzSTQAAACTRJNJNAMAAENEM0REAwAAQzQzREQDAABDM0SURAMAADBDRJRJAwAAMERJlEQDAAAwSUk0RAMAADBJRDRDAwAAAJNEREMDAAAAMEREMwMAAAAwMzMzAAAAAAAAAAAAAA==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Rock Outcrop"
     },
-    "image3": {
+    "myImages.image3": {
+        "id": "myImages.image3",
         "data": "hwQQABAAAAAAAAAAMDMzAwAAADDT2Z0DAAAzM92Z3QMAM9M52Z0zAzDT3T3TPZM9M+3dnTPTnZnT3e2dk93dndPd3Z3T3T0zk93dOZPdnTmT2d45k93dmTPT3Tk5MzOZADPdOd3dPdMAMDM53Z3ZPQAAMDPTmd0zAAAAADMzPQMAAAAAADAzAA==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Stone Golem"
     },
-    "image9": {
+    "myImages.image9": {
+        "id": "myImages.image9",
         "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAHAAAAAAAAcAcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Cursor"
-    },
-    "*": {
-        "mimeType": "image/x-mkcd-f4",
-        "dataEncoding": "base64",
-        "namespace": "myImages"
     }
 }
