@@ -22,6 +22,7 @@ let Attack1 = textsprite.create("PUNCH")
 let FightMenu: TextSprite[] =[Fight,Items]
 let AttackMenu: TextSprite[] = [Attack1]
 let Bar: StatusBarSprite = null
+let BarLabel: StatusBarSprite = null
 let ZombieStats = [5, 1, 3, 2, 2]
 let SpiderStats = [4, 1, 2, 2, 3]
 let SkeletonStats = [3, 2, 4, 1, 5]
@@ -55,6 +56,7 @@ class Armor extends sprites.ExtendableSprite{
 }
 class Player extends sprites.ExtendableSprite{
     hitpoints: number 
+    maxHP: number
     strength: number
     defense: number
     intelligence: number
@@ -63,6 +65,7 @@ class Player extends sprites.ExtendableSprite{
 }
 class Monster extends sprites.ExtendableSprite{
     hitpoints: number
+    maxHP: number
     magiks: number
     strength: number
     defense: number
@@ -89,6 +92,7 @@ class Monster extends sprites.ExtendableSprite{
 
 function setstats(stats: number[], Mob : Monster ) {
     Mob.hitpoints = stats[0]
+    Mob.maxHP = stats[0]
     Mob.magiks = stats[1]
     Mob.strength = stats[2]
     Mob.defense = stats[3]
@@ -136,20 +140,24 @@ function startBattle(player: Player, monster: Monster){
     spriteutils.moveToAtSpeed(player, spriteutils.pos(40, 50), 100)
     pause(600)
     showUsingArray(FightMenu)
-    createMobBar(monster,monster.hitpoints*3,"HP",StatusBarKind.Health)
+    createMobBar(monster,40,monster.hitpoints + "/" + monster.maxHP,StatusBarKind.EnemyHealth)
     createPlayerBar(StatusBarKind.Health)
 
 
 }
 function createMobBar(attachTo: Monster, width: number, label:string, kind:number ){
-    Bar = statusbars.create(width,4,kind)
+    Bar = statusbars.create(width, 4, kind)
+    BarLabel = statusbars.create(0.1, 0.1, StatusBarKind.Health)
+    BarLabel.attachToSprite(attachTo,17,0)
     Bar.attachToSprite(attachTo,10,0)
-    Bar.setLabel(label)
+    BarLabel.setLabel(label)
 }
 function createPlayerBar(kind:number){
-    Bar = statusbars.create(Wilson.hitpoints,4,kind)
+    Bar = statusbars.create(40, 4, kind)
+    BarLabel = statusbars.create(0.1, 0.1, StatusBarKind.Health)
+    BarLabel.attachToSprite(Wilson,17,0)
     Bar.attachToSprite(Wilson,10,0)
-    Bar.setLabel("HP")
+    BarLabel.setLabel(Wilson.hitpoints+ "/" +Wilson.maxHP)
 }
 function hideWithKind(spriteKind: number){
     Hider = sprites.allOfKind(spriteKind)
@@ -233,6 +241,7 @@ for (let value of tiles.getTilesByType(assets.tile`OreTile`)) {
 let Wilson =
     new Player(assets.image`Wilson`, SpriteKind.Player)
     Wilson.hitpoints = 5
+    Wilson.maxHP = 5
     Wilson.strength = 1
     Wilson.defense = 1
     Wilson.intelligence = 1
