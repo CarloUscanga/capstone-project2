@@ -55,6 +55,7 @@ class Player extends sprites.ExtendableSprite{
 }
 class Monster extends sprites.ExtendableSprite{
     hitpoints: number
+    magiks: number
     strength: number
     defense: number
     speed: number
@@ -76,7 +77,10 @@ class Monster extends sprites.ExtendableSprite{
     }
 }
 
-
+function setstats(stats: number[], Mob : Monster ) {
+    Mob.hitpoints = stats[0]
+    Mob.magiks = stats[1]
+}
 function move(directon:CollisionDirection){
     location = Wilson.tilemapLocation()
     if (tiles.tileAtLocationIsWall(location.getNeighboringLocation(directon)) === false) {
