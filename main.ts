@@ -22,6 +22,14 @@ let Attack1 = textsprite.create("PUNCH")
 let FightMenu: TextSprite[] =[Fight,Items]
 let AttackMenu: TextSprite[] = [Attack1]
 let Bar: StatusBarSprite = null
+let ZombieStats = [5, 1, 3, 2, 2]
+let SpiderStats = [4, 1, 2, 2, 3]
+let SkeletonStats = [3, 2, 4, 1, 5]
+let WitchStats = [6, 5, 3, 4, 4]
+let WizardStats = [7, 6, 4, 4, 5]
+let StoneGolemStats = [12, 4, 10, 10, 1]
+
+
 
 let Cursor = sprites.create(assets.image`Cursor`,SpriteKind.Cursor)
 
@@ -64,15 +72,17 @@ class Monster extends sprites.ExtendableSprite{
     constructor(image: Image, kind: number){
         super(image,kind)
         if(image.equals(assets.image`Zombie`)=== true){
-            this.hitpoints = 5
-            this.strength = 3
-            this.defense = 2
-            this.speed = 1
+            setstats(ZombieStats,this)
         } else if (image.equals(assets.image`Spider`)=== true){
-            this.hitpoints = 4
-            this.strength = 2
-            this.defense = 2
-            this.speed = 3
+            setstats(SpiderStats, this)
+        } else if (image.equals(assets.image`Skeleton`) === true) {
+            setstats(SkeletonStats, this)
+        } else if (image.equals(assets.image`Witch`) === true) {
+            setstats(WitchStats,this)
+        } else if (image.equals(assets.image`Wizard`) === true) {
+            setstats(WizardStats,this)
+        } else if (image.equals(assets.image`Stone Golem`) === true) {
+            setstats(StoneGolemStats,this)
         }
     }
 }
@@ -80,6 +90,9 @@ class Monster extends sprites.ExtendableSprite{
 function setstats(stats: number[], Mob : Monster ) {
     Mob.hitpoints = stats[0]
     Mob.magiks = stats[1]
+    Mob.strength = stats[2]
+    Mob.defense = stats[3]
+    Mob.speed = stats[4]
 }
 function move(directon:CollisionDirection){
     location = Wilson.tilemapLocation()
@@ -129,7 +142,7 @@ function startBattle(player: Player, monster: Monster){
 
 }
 function createMobBar(attachTo: Monster, width: number, label:string, kind:number ){
-    Bar = statusbars.create(attachTo.hitpoints,4,kind)
+    Bar = statusbars.create(width,4,kind)
     Bar.attachToSprite(attachTo,10,0)
     Bar.setLabel(label)
 }
