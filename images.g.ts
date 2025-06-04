@@ -1,0 +1,186 @@
+// Auto-generated code. Do not edit.
+namespace myImages {
+
+    helpers._registerFactory("image", function(name: string) {
+        switch(helpers.stringTrim(name)) {
+            case "image1":
+            case "Wilson":return img`
+. f f f f f f . 
+f f 5 5 5 5 f f 
+f 5 f 5 5 f 5 f 
+f 5 5 5 5 5 5 f 
+f 5 5 5 5 5 5 f 
+f 5 5 f 5 5 5 f 
+f f 5 5 5 5 f f 
+. f f f f f f . 
+`;
+            case "image2":
+            case "Spider":return img`
+. . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . 
+. f f . . . . . . . . f f . 
+f . . f . f f f f . f . . f 
+. . . . f f f f f f . . . . 
+. f f f f f f f f f f f f . 
+f . . . f f f f f f . . . f 
+. . f f f 2 f f 2 f f f . . 
+. f . . f f f f f f . . f . 
+f . . f . f . . f . f . . f 
+. . f . . . . . . . . f . . 
+. . f . . . . . . . . f . . 
+. . . . . . . . . . . . . . 
+`;
+            case "image6":
+            case "Wizard":return img`
+. . . . . . . . . . . . 3 e e 3 
+. . . . . . . . 3 3 3 e e e e 3 
+. . . . . 3 3 3 3 e e e e 3 3 . 
+. . . 3 3 3 e e e e e e e 3 . . 
+. . . . . 3 3 3 e e e e 3 3 . . 
+. 3 3 3 3 3 9 3 3 e e e e 3 . . 
+3 5 5 3 3 9 7 9 9 3 3 e e 3 . . 
+3 5 5 5 3 9 9 9 7 9 3 3 e 3 3 . 
+3 3 5 5 3 9 9 9 9 9 9 9 3 3 3 . 
+3 2 2 2 3 9 9 9 3 9 9 3 3 . . . 
+3 3 2 3 3 3 3 9 9 9 3 3 . . . . 
+. 3 2 3 . 3 3 3 3 3 3 3 3 . . . 
+. 3 2 3 3 3 f f f f f f 3 3 . . 
+. 3 2 3 3 f f f f f f f 3 3 . . 
+. 3 2 3 3 f f f f f f f f 3 . . 
+. 3 3 3 3 f 3 3 f f 3 3 f 3 . . 
+`;
+            case "image5":
+            case "Witch":return img`
+. . . . . . . . 3 3 3 3 3 . . . 
+. . . . . 3 3 3 e e e e 3 3 . . 
+. . . 3 3 3 e e e e e 3 3 3 . . 
+. . 3 3 3 3 3 3 3 3 e 3 . 3 3 . 
+. . . . 3 7 7 7 7 3 3 3 . . 3 . 
+. . . . 3 2 7 2 7 7 3 3 3 . . . 
+. . . . 3 7 7 7 7 7 3 3 3 . . . 
+. . . . 3 7 7 3 7 7 3 . 3 3 . . 
+. . . . . 3 3 3 3 3 . . . . . . 
+. . . . . 3 f f f 3 . . . . . . 
+. . . . . 3 f f f 3 3 . . . . . 
+. . . . 3 3 3 f f f 3 . 4 4 . . 
+. 2 2 2 2 2 3 f f f 3 2 4 4 4 . 
+. . . . . . 3 f f f 3 3 . 4 4 . 
+. . . . . . . 3 f f f 3 . . . 4 
+. . . . . . . 3 3 3 3 . . . . . 
+`;
+            case "image7":
+            case "Zombie":return img`
+. . . . . . . 3 3 3 3 3 . . . . 
+. . . . . . 3 3 2 2 e 3 3 . . . 
+. . . . . 3 2 e 2 e b e 3 3 . . 
+. . . . . 3 e b e b 1 b b 3 . . 
+. . . . . 3 b 1 b b b b b 3 . . 
+. . . . . 3 3 b b b b b 3 . . . 
+. . . . . . 3 b b 1 b b 3 . . . 
+. . . . . . 3 3 3 3 3 3 3 . . . 
+. . 3 3 3 3 3 b b b b b b 3 . . 
+. . 3 b b b b b b b b b b 3 . . 
+. . 3 3 3 3 3 3 b b b b b 3 . . 
+. . . . 3 b b b b b b b b 3 . . 
+. . . . 3 3 3 3 3 3 3 f f 3 . . 
+. . . . . . . 3 f f f f f 3 . . 
+. . . . . . . 3 f 3 3 3 f 3 . . 
+. . . . . . . 3 b 3 . 3 b 3 . . 
+`;
+            case "image4":
+            case "Skeleton":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . 1 1 1 1 1 . . . . . . 
+. . . . . 1 3 1 1 1 . . . . . . 
+. . d . . 1 1 1 3 1 . . . . . . 
+. . d . . 1 1 1 1 1 . . . . . . 
+. . d d . . 1 . 1 . . . . . . . 
+. . . d . . . . . 1 . . . . . . 
+. . . d d . . 1 1 1 1 1 . . . . 
+. . . . d 4 1 . . 1 3 3 3 3 3 . 
+. . . 4 4 1 . . 1 1 3 4 4 4 3 . 
+. . . . . 4 . . . 1 3 4 d 4 3 . 
+. . . . . . . . 1 1 3 4 4 3 3 . 
+. . . . . . . . 1 . 3 3 3 3 . . 
+. . . . . . . . 1 . 1 . . . . . 
+. . . . . . . . 1 . 1 . . . . . 
+`;
+            case "image8":
+            case "Rock Outcrop":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . 3 3 3 3 3 . . . . . . . . 
+. . 3 3 9 4 4 4 3 3 3 3 . . . . 
+. . 3 4 4 4 4 3 3 4 9 9 3 . . . 
+. 3 3 4 4 4 3 3 4 4 4 4 9 3 3 . 
+. 3 4 3 3 3 3 4 4 9 9 4 4 4 3 . 
+. 3 3 3 9 3 3 4 4 4 4 4 4 4 3 . 
+. 3 4 9 9 4 4 4 4 4 4 4 4 4 3 . 
+. 3 4 4 4 4 4 9 9 9 3 3 4 4 3 . 
+. 3 4 4 4 4 4 4 9 4 4 3 3 3 3 . 
+. 3 3 3 3 4 4 4 4 4 4 4 4 3 3 . 
+. . . . 3 3 3 3 3 3 3 3 3 3 . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`;
+            case "image3":
+            case "Stone Golem":return img`
+. . . . . 3 3 3 3 3 3 . . . . . 
+. . . . 3 3 d d 9 9 3 . . . . . 
+. . . 3 3 d d d d 9 3 3 . . . . 
+. . . 3 d e d d d d d 3 3 . . . 
+. . 3 3 d d d d d e d d 3 . . . 
+. . 3 d d d e d d d d d 3 3 . . 
+. . 3 9 d d d d 9 9 9 9 9 3 . . 
+. 3 3 3 3 9 9 9 3 3 3 3 3 3 . . 
+. 3 d 9 3 3 3 3 3 3 9 d d 3 3 . 
+3 d d d d 3 9 d 9 9 3 d d d 3 . 
+3 9 9 d d 3 d d d d 3 d d 9 3 . 
+3 d 9 9 3 d d d d d 3 d 9 9 3 3 
+3 d d 3 3 d d d d d 3 d 9 d d 3 
+3 9 d 3 9 9 d 3 9 d 3 3 d d 3 3 
+3 3 3 3 d 9 d 3 9 9 9 3 d 3 3 . 
+. . . . 3 9 9 3 3 9 9 d 3 3 . . 
+`;
+            case "image9":
+            case "Cursor":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . 7 7 . . . . . . . 
+. . . . . . . 7 7 . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`;
+        }
+        return null;
+    })
+
+    helpers._registerFactory("animation", function(name: string) {
+        switch(helpers.stringTrim(name)) {
+
+        }
+        return null;
+    })
+
+    helpers._registerFactory("song", function(name: string) {
+        switch(helpers.stringTrim(name)) {
+
+        }
+        return null;
+    })
+
+}
+// Auto-generated code. Do not edit.
