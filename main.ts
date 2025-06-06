@@ -66,6 +66,23 @@ class Player extends sprites.ExtendableSprite{
     intelligence: number
     speed: number
 
+    PhysicalHit(Attacker: Monster) {
+        CurrentHP = this.hitpoints
+        for (let index = 0; this.hitpoints > CurrentHP - Attacker.strength; index++){
+            this.hitpoints--
+            for (let index = 0; Bar.value > Math.round((this.hitpoints / this.maxHP) * 100); index++){
+                if (Bar.value <= 0) {
+                    game.setGameOverMessage(false, "You got beat to a pulp")
+                    game.gameOver(false)
+                    break
+                }
+                Bar.value--
+                BarLabel.setLabel(this.hitpoints + "/" + this.maxHP)
+                pause(10)
+            }
+        }
+    }
+
 }
 class Monster extends sprites.ExtendableSprite{
     hitpoints: number
@@ -94,9 +111,11 @@ class Monster extends sprites.ExtendableSprite{
         }
         if (MBar.value > 0) {
             showUsingArray(FightMenu)
+            MonsterTurn()
         } else if (Battle === true && MBar.value == 0) {
             BattleWon()
         }
+        
 
         
 
@@ -177,6 +196,9 @@ function startBattle(player: Player, monster: Monster){
 
 
 }
+function MonsterTurn() {
+    Wilson.PhysicalHit(FightingMob)
+}
 function BattleWon() {
     hideUsingArray(FightMenu)
     hideUsingArray(AttackMenu)
@@ -210,7 +232,7 @@ function createMobBar(attachTo: Monster, width: number, label:string, kind:numbe
 }
 function createPlayerBar(kind:number){
     Bar = statusbars.create(40, 4, kind)
-    Bar.value = 100
+    Bar.value = Math.round((Wilson.hitpoints/Wilson.maxHP)*100)
     BarLabel = statusbars.create(0.1, 0.1, StatusBarKind.Health)
     BarLabel.attachToSprite(Wilson,17,0)
     Bar.attachToSprite(Wilson,10,0)
