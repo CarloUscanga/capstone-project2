@@ -7,6 +7,7 @@ let Mob: Monster = null
 let FightingMob: Monster = null
 let ore: Ore = null
 let Spawner = 0
+let CurrentHP = 0
 let location: tiles.Location = null
 let WeakMobs = [assets.image`Zombie`,assets.image`Spider`]
 let Mobs = [assets.image`Zombie`, assets.image`Spider`, assets.image`Skeleton`,
@@ -74,9 +75,28 @@ class Monster extends sprites.ExtendableSprite{
     defense: number
     speed: number
 
-    hit(): void {
-        this.hitpoints -= Wilson.strength
+    PhysicalHit(): void {
+        CurrentHP = this.hitpoints
+        for (let index = 0; this.hitpoints > CurrentHP - Wilson.strength; index++){
+            this.hitpoints--
+            for (let index = 0; MBar.value > Math.round((this.hitpoints / this.maxHP) * 100); index++){
+                if (MBar.value <= 0) {
+                    BattleWon()
+                    break
+                }
+                MBar.value--
+                MBarLabel.setLabel(this.hitpoints+"/"+this.maxHP)
+                pause(10)
+                
+            
+            }
+            
+        }
+        showUsingArray(FightMenu) 
         
+
+        
+
     }
     
     constructor(image: Image, kind: number){
@@ -154,8 +174,32 @@ function startBattle(player: Player, monster: Monster){
 
 
 }
+function BattleWon() {
+    hideUsingArray(FightMenu)
+    hideUsingArray(AttackMenu)
+    FightingMob.destroy(effects.disintegrate, 3)
+    pause(1000)
+    destroyHPBars()
+    showWithKind(SpriteKind.Enemy)
+    showWithKind(SpriteKind.Ore)
+    Wilson.setFlag(SpriteFlag.RelativeToCamera,false)
+    tiles.setCurrentTilemap(tilemap`level3`)
+    tiles.placeOnTile(Wilson, OGposition)
+    FREEZE = false
+    Battle = false
+    
+
+
+}
+function destroyHPBars() {
+    Bar.destroy()
+    BarLabel.destroy()
+    MBar.destroy()
+    MBarLabel.destroy()
+}
 function createMobBar(attachTo: Monster, width: number, label:string, kind:number ){
     MBar = statusbars.create(width, 4, kind)
+    MBar.value = 100
     MBarLabel = statusbars.create(0.1, 0.1, StatusBarKind.Health)
     MBarLabel.attachToSprite(attachTo,17,0)
     MBar.attachToSprite(attachTo,10,0)
@@ -163,6 +207,7 @@ function createMobBar(attachTo: Monster, width: number, label:string, kind:numbe
 }
 function createPlayerBar(kind:number){
     Bar = statusbars.create(40, 4, kind)
+    Bar.value = 100
     BarLabel = statusbars.create(0.1, 0.1, StatusBarKind.Health)
     BarLabel.attachToSprite(Wilson,17,0)
     Bar.attachToSprite(Wilson,10,0)
@@ -223,10 +268,10 @@ browserEvents.MouseLeft.onEvent(browserEvents.MouseButtonEvent.Pressed, function
         showUsingArray(AttackMenu)    
         Attacking = true
     } else if (Math.abs(x - Attack1.x) <= 10 && Math.abs(y - Attack1.y) <= 10 && Battle === true && Attacking === true) {
-        FightingMob.hit()
+        FightingMob.PhysicalHit()
         Attacking = false
         hideUsingArray(AttackMenu)
-        showUsingArray(FightMenu)   
+          
     }
    
 
@@ -256,7 +301,7 @@ for (let value of tiles.getTilesByType(assets.tile`OreTile`)) {
 Wilson = new Player(assets.image`Wilson`,SpriteKind.Player)
 Wilson.hitpoints = 5
 Wilson.maxHP = 5
-Wilson.strength = 1
+Wilson.strength = 2
 Wilson.defense = 1
 Wilson.intelligence = 1
 Wilson.speed = 1
