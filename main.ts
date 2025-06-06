@@ -81,6 +81,10 @@ class Player extends sprites.ExtendableSprite{
                 pause(10)
             }
         }
+        if (Bar.value == 0) {
+            game.setGameOverMessage(false, "You got beat to a pulp")
+            game.gameOver(false)
+        }
     }
 
 }
