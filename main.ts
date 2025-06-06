@@ -3,7 +3,9 @@ namespace SpriteKind {
     export const Cursor = SpriteKind.create()
 }
 
-let Mob: Sprite = null
+let Mob: Monster = null
+let FightingMob: Monster = null
+let ore: Ore = null
 let Spawner = 0
 let location: tiles.Location = null
 let WeakMobs = [assets.image`Zombie`,assets.image`Spider`]
@@ -22,15 +24,16 @@ let Attack1 = textsprite.create("PUNCH")
 let FightMenu: TextSprite[] =[Fight,Items]
 let AttackMenu: TextSprite[] = [Attack1]
 let Bar: StatusBarSprite = null
+let MBar: StatusBarSprite = null
 let BarLabel: StatusBarSprite = null
+let MBarLabel: StatusBarSprite = null
 let ZombieStats = [5, 1, 3, 2, 2]
 let SpiderStats = [4, 1, 2, 2, 3]
 let SkeletonStats = [3, 2, 4, 1, 5]
 let WitchStats = [6, 5, 3, 4, 4]
 let WizardStats = [7, 6, 4, 4, 5]
 let StoneGolemStats = [12, 4, 10, 10, 1]
-
-
+let Wilson : Player = null
 
 let Cursor = sprites.create(assets.image`Cursor`,SpriteKind.Cursor)
 
@@ -71,6 +74,10 @@ class Monster extends sprites.ExtendableSprite{
     defense: number
     speed: number
 
+    hit(): void {
+        this.hitpoints -= Wilson.strength
+        
+    }
     
     constructor(image: Image, kind: number){
         super(image,kind)
@@ -124,33 +131,35 @@ function spawnStrong(spawnTile: tiles.Location){
     Mob = new Monster(StrongMobs[Spawner], SpriteKind.Enemy)
     tiles.placeOnTile(Mob, spawnTile)
 }
+
 function startBattle(player: Player, monster: Monster){
     FREEZE = true
     Battle = true
+    FightingMob = monster
     OGposition = Wilson.tilemapLocation()
     tiles.setCurrentTilemap(tilemap`Battle`)
     hideWithKind(SpriteKind.Enemy)
     hideWithKind(SpriteKind.Ore)
-    monster.setFlag(SpriteFlag.Invisible,false)
-    monster.setFlag(SpriteFlag.RelativeToCamera, true)
-    monster.setPosition(80,50)
-    spriteutils.moveToAtSpeed(monster, spriteutils.pos(120, 50), 100)
+    FightingMob.setFlag(SpriteFlag.Invisible,false)
+    FightingMob.setFlag(SpriteFlag.RelativeToCamera, true)
+    FightingMob.setPosition(80,50)
+    spriteutils.moveToAtSpeed(FightingMob, spriteutils.pos(120, 50), 100)
     player.setFlag(SpriteFlag.RelativeToCamera, true)
     player.setPosition(80,50)
     spriteutils.moveToAtSpeed(player, spriteutils.pos(40, 50), 100)
     pause(600)
     showUsingArray(FightMenu)
-    createMobBar(monster,40,monster.hitpoints + "/" + monster.maxHP,StatusBarKind.EnemyHealth)
+    createMobBar(FightingMob,40,FightingMob.hitpoints + "/" + FightingMob.maxHP,StatusBarKind.EnemyHealth)
     createPlayerBar(StatusBarKind.Health)
 
 
 }
 function createMobBar(attachTo: Monster, width: number, label:string, kind:number ){
-    Bar = statusbars.create(width, 4, kind)
-    BarLabel = statusbars.create(0.1, 0.1, StatusBarKind.Health)
-    BarLabel.attachToSprite(attachTo,17,0)
-    Bar.attachToSprite(attachTo,10,0)
-    BarLabel.setLabel(label)
+    MBar = statusbars.create(width, 4, kind)
+    MBarLabel = statusbars.create(0.1, 0.1, StatusBarKind.Health)
+    MBarLabel.attachToSprite(attachTo,17,0)
+    MBar.attachToSprite(attachTo,10,0)
+    MBarLabel.setLabel(label)
 }
 function createPlayerBar(kind:number){
     Bar = statusbars.create(40, 4, kind)
@@ -209,9 +218,15 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 browserEvents.MouseLeft.onEvent(browserEvents.MouseButtonEvent.Pressed, function(x: number, y: number) {
-    if (Math.abs(x - Fight.x) <= 10 && Math.abs(y - Fight.y) <= 10 && Battle === true){
+    if (Math.abs(x - Fight.x) <= 10 && Math.abs(y - Fight.y) <= 10 && Battle === true && Attacking === false){
         hideUsingArray(FightMenu)
         showUsingArray(AttackMenu)    
+        Attacking = true
+    } else if (Math.abs(x - Attack1.x) <= 10 && Math.abs(y - Attack1.y) <= 10 && Battle === true && Attacking === true) {
+        FightingMob.hit()
+        Attacking = false
+        hideUsingArray(AttackMenu)
+        showUsingArray(FightMenu)   
     }
    
 
@@ -232,20 +247,19 @@ for (let value of tiles.getTilesByType(assets.tile`StrongSpawnTile`)) {
     spawnStrong(value)
 }
 for (let value of tiles.getTilesByType(assets.tile`OreTile`)) {
-    Mob = new Ore(assets.image`Rock Outcrop`,SpriteKind.Ore)
-    tiles.placeOnTile(Mob, value)
+    ore = new Ore(assets.image`Rock Outcrop`,SpriteKind.Ore)
+    tiles.placeOnTile(ore, value)
 }
 
 
 
-let Wilson =
-    new Player(assets.image`Wilson`, SpriteKind.Player)
-    Wilson.hitpoints = 5
-    Wilson.maxHP = 5
-    Wilson.strength = 1
-    Wilson.defense = 1
-    Wilson.intelligence = 1
-    Wilson.speed = 1
+Wilson = new Player(assets.image`Wilson`,SpriteKind.Player)
+Wilson.hitpoints = 5
+Wilson.maxHP = 5
+Wilson.strength = 1
+Wilson.defense = 1
+Wilson.intelligence = 1
+Wilson.speed = 1
 scene.cameraFollowSprite(Wilson)
 tiles.placeOnTile(Wilson, tiles.getTileLocation(0, 0))
 Fight.setFlag(SpriteFlag.RelativeToCamera, true)
