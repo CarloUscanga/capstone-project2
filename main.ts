@@ -92,8 +92,11 @@ class Monster extends sprites.ExtendableSprite{
             }
             
         }
-        showUsingArray(FightMenu) 
-        
+        if (MBar.value > 0) {
+            showUsingArray(FightMenu)
+        } else if (Battle === true && MBar.value == 0) {
+            BattleWon()
+        }
 
         
 
@@ -268,10 +271,10 @@ browserEvents.MouseLeft.onEvent(browserEvents.MouseButtonEvent.Pressed, function
         showUsingArray(AttackMenu)    
         Attacking = true
     } else if (Math.abs(x - Attack1.x) <= 10 && Math.abs(y - Attack1.y) <= 10 && Battle === true && Attacking === true) {
-        FightingMob.PhysicalHit()
         Attacking = false
         hideUsingArray(AttackMenu)
-          
+        FightingMob.PhysicalHit()
+        
     }
    
 
