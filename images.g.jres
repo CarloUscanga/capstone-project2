@@ -70,5 +70,13 @@
         "namespace": "myImages.",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Cursor"
+    },
+    "myImages.image10": {
+        "id": "myImages.image10",
+        "data": "hwQQABAAAAAzMzMDAAAAACMiIgMAAAAAIyIiAwAAAAAjIiIzMzMzACMiIiIiIiIDMyIiIiIiIjMAIyIiIiIiMgAw4uLi4uIyADAuLi4uLj4AIyIiIiIiMjMiIiIiIiIyIyIiIiIiIgMjIiIzMzMzACMiIgMAAAAAIyIiAwAAAAAzMzMDAAAAAA==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "LeatherTunic"
     }
 }
