@@ -5,6 +5,7 @@ namespace SpriteKind {
 
 let Mob: Monster = null
 let FightingMob: Monster = null
+let Gear: Armor = null
 let ore: Ore = null
 let Spawner = 0
 let CurrentHP = 0
@@ -13,6 +14,12 @@ let WeakMobs = [assets.image`Zombie`,assets.image`Spider`]
 let Mobs = [assets.image`Zombie`, assets.image`Spider`, assets.image`Skeleton`,
 assets.image`Witch`, assets.image`Wizard`,assets.image`Stone Golem`]
 let StrongMobs = [assets.image`Wizard`, assets.image`Stone Golem`]
+let ArmorArray = [assets.image`LeatherTunic`, assets.image`LeatherPants`,
+    assets.image`LeatherBoots`, assets.image`LeatherHelm`, assets.image`IronChestplate`,
+    assets.image`IronBoots`, assets.image`IronLeggings`, assets.image`IronHelmet`,
+    assets.image`GoldChestplate`, assets.image`GoldLeggings`, assets.image`GoldHelmet`,
+    assets.image`GoldBoots`
+]
 let Hider : Sprite[] = []
 let FREEZE = false
 let Battle = false
@@ -157,15 +164,16 @@ function move(directon:CollisionDirection){
         spriteutils.moveToAtSpeed(Wilson, location.getNeighboringLocation(directon), 100)
     }
 }
-function spawnMobs1(spawnTile:tiles.Location, selection: Array<Image>, min:number,max:number){
-    Spawner = randint(min,max)
-    Mob = new Monster(selection[Spawner],SpriteKind.Enemy)
-    tiles.placeOnTile(Mob, spawnTile)
-}
 function spawnWeak(spawnTile: tiles.Location){
     Spawner = randint(0,1)
     Mob = new Monster(WeakMobs[Spawner], SpriteKind.Enemy)
     tiles.placeOnTile(Mob,spawnTile)
+}
+function spawnLoot(spawnTile: tiles.Location, type: Image[]) { 
+    Spawner = randint(0, type.length - 1)
+    Gear = new Armor(type[Spawner], SpriteKind.Food)
+    tiles.placeOnTile(Gear,spawnTile)
+    
 }
 function spawnMobs(spawnTile:tiles.Location){
     Spawner = randint(0,5)
@@ -324,7 +332,9 @@ for (let value of tiles.getTilesByType(assets.tile`OreTile`)) {
     ore = new Ore(assets.image`Rock Outcrop`,SpriteKind.Ore)
     tiles.placeOnTile(ore, value)
 }
-
+for (let value of tiles.getTilesByType(assets.tile`LootTile`)) {
+    spawnLoot(value,ArmorArray)
+}
 
 
 Wilson = new Player(assets.image`Wilson`,SpriteKind.Player)

@@ -241,7 +241,7 @@ f . . f . f . . f . f . . f
 . . . . . . . . . . . . . . . . 
 `;
             case "image14":
-            case "LeatherTunic0":return img`
+            case "IronChestplate":return img`
 3 3 3 3 3 3 . . . . 3 3 3 3 3 3 
 3 d d d 9 3 . . . . 3 9 d d d 3 
 3 d d d d 9 3 . . 3 9 d d d d 3 
@@ -260,7 +260,7 @@ f . . f . f . . f . f . . f
 . . . . . 3 3 3 3 3 3 . . . . . 
 `;
             case "image15":
-            case "LeatherPants0":return img`
+            case "IronLeggings":return img`
 . . . . . . . . . . . . . . . . 
 . . 3 3 3 3 3 3 3 3 3 3 3 3 . . 
 . 3 d d d d d d d d d d d d 3 . 
@@ -279,7 +279,7 @@ f . . f . f . . f . f . . f
 . . . . . . . . . . . . . . . . 
 `;
             case "image16":
-            case "LeatherBoots0":return img`
+            case "IronBoots":return img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . 3 . . . . 3 . . . . . 
@@ -298,7 +298,7 @@ f . . f . f . . f . f . . f
 . . . . . . . . . . . . . . . . 
 `;
             case "image17":
-            case "LeatherHelm0":return img`
+            case "IronHelmet":return img`
 . . . . . . . 3 3 . . . . . . . 
 . . . . . 3 3 d d 3 3 . . . . . 
 . . . 3 3 d d d d d d 3 3 . . . 
@@ -317,7 +317,7 @@ f . . f . f . . f . f . . f
 . . . . . . . . . . . . . . . . 
 `;
             case "image18":
-            case "LeatherTunic1":return img`
+            case "GoldChestplate":return img`
 3 3 3 3 3 3 . . . . 3 3 3 3 3 3 
 3 7 7 7 5 3 . . . . 3 5 7 7 7 3 
 3 7 7 7 7 5 3 . . 3 5 7 7 7 7 3 
@@ -336,7 +336,7 @@ f . . f . f . . f . f . . f
 . . . . . 3 3 3 3 3 3 . . . . . 
 `;
             case "image19":
-            case "LeatherPants1":return img`
+            case "GoldLeggings":return img`
 . . . . . . . . . . . . . . . . 
 . . 3 3 3 3 3 3 3 3 3 3 3 3 . . 
 . 3 7 7 7 7 7 7 7 7 7 7 7 7 3 . 
@@ -355,7 +355,7 @@ f . . f . f . . f . f . . f
 . . . . . . . . . . . . . . . . 
 `;
             case "image21":
-            case "LeatherHelm1":return img`
+            case "GoldHelmet":return img`
 . . . . . . . . . . . . . . . . 
 . . . 3 . . . 3 3 . . . 3 . . . 
 . . 3 7 3 . 3 7 7 3 . 3 7 3 . . 
@@ -374,7 +374,7 @@ f . . f . f . . f . f . . f
 . . . . . . . . . . . . . . . . 
 `;
             case "image20":
-            case "LeatherBoots1":return img`
+            case "GoldBoots":return img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
