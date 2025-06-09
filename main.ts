@@ -322,8 +322,8 @@ browserEvents.MouseLeft.onEvent(browserEvents.MouseButtonEvent.Pressed, function
 browserEvents.onMouseMove(function(x: number, y: number) {
     Cursor.setPosition(x,y)
 })
-browserEvents.E.onEvent(browserEvents.KeyEvent.Pressed, function () {
-    
+browserEvents.R.onEvent(browserEvents.KeyEvent.Pressed, function () {
+    showCurrentStats()
 })
 
 tiles.setCurrentTilemap(tilemap`level3`)
