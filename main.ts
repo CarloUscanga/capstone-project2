@@ -275,6 +275,12 @@ function hideUsingArray(array: Array<Sprite>){
         array[index].setFlag(SpriteFlag.Invisible, true)
     }
 }
+function showCurrentStats() {
+    if (Battle == false && FREEZE == false) {
+        FREEZE = true
+        game.showLongText("123456789",DialogLayout.Bottom)
+    }
+}
 
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function(player: Player, mob: Monster) {
     startBattle(player,mob)
@@ -315,6 +321,9 @@ browserEvents.MouseLeft.onEvent(browserEvents.MouseButtonEvent.Pressed, function
 })
 browserEvents.onMouseMove(function(x: number, y: number) {
     Cursor.setPosition(x,y)
+})
+browserEvents.E.onEvent(browserEvents.KeyEvent.Pressed, function () {
+    
 })
 
 tiles.setCurrentTilemap(tilemap`level3`)
