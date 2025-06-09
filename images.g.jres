@@ -94,5 +94,13 @@
         "namespace": "myImages.",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "LeatherBoots"
+    },
+    "myImages.image13": {
+        "id": "myImages.image13",
+        "data": "hwQQABAAAAAAAAAAAAAAAAAwMzMzMzMAAENERERERAMwREREREREAzBEREQzMzMAMERENAAAAAAwREQDAAAAADBERAMAAAAAMEREAwAAAAAwREQDAAAAADBERDQAAAAAMERERDMzMwAwREREREREAwBDREREREQDADAzMzMzMwAAAAAAAAAAAA==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "LeatherHelm"
     }
 }
