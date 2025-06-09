@@ -102,5 +102,69 @@
         "namespace": "myImages.",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "LeatherHelm"
+    },
+    "myImages.image14": {
+        "id": "myImages.image14",
+        "data": "hwQQABAAAAAzMzMDAAAAANPd3QMAAAAA093dAwAAAADT3d0zMzMzAJPdnd3Znd0DM5nZ3Z3d2TMA093Znd3ZPQAw3dmd3dk9ADDd2Z3d2T0A093Znd3ZPTOZ2d2d3dk9k92d3dmd3QPT3d0zMzMzANPd3QMAAAAA093dAwAAAAAzMzMDAAAAAA==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "IronChestplate"
+    },
+    "myImages.image15": {
+        "id": "myImages.image15",
+        "data": "hwQQABAAAAAAAAAAAAAAAAAzMzMzMzMAMN3d3dnd3QMw3d3dnd3dAzDd3d2d3d0DMN3d3dnd3QMw3d0zMzMzADDdPQAAAAAAMN09AAAAAAAw3d0zMzMzADDd3d3Z3d0DMN3d3Z3d3QMw3d3dnd3dAzDd3d3Z3d0DADMzMzMzMwAAAAAAAAAAAA==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "IronLeggings"
+    },
+    "myImages.image16": {
+        "id": "myImages.image16",
+        "data": "hwQQABAAAAAAAAAAADAzAwAAAAAAMN0DAAAAAAAw2QMAADMzMzPZAwAw2Z3d2d0DANOd3dmd3QMAMDMzMzMzAwAAAAAAAAAAAAAAAAAAAAAAMDMzMzMzAwDTnd3Znd0DADDZnd3Z3QMAADMzMzPZAwAAAAAAMNkDAAAAAAAw3QMAAAAAADAzAw==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "IronBoots"
+    },
+    "myImages.image17": {
+        "id": "myImages.image17",
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAMzMzMzMAADDT3dnZ3QMAM93dnZ3dAwDT3d0zMzMAMN3dPQAAAAAw3d0DAAAAANOdmQMAAAAA052ZAwAAAAAw3d0DAAAAADDd3T0AAAAAANPd3TMzMwAAM93dnZ3dAwAw093Z2d0DAAAzMzMzMwAAAAAAAAAAAA==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "IronHelmet"
+    },
+    "myImages.image18": {
+        "id": "myImages.image18",
+        "data": "hwQQABAAAAAzMzMDAAAAAHN3dwMAAAAAc3d3AwAAAABzd3czMzMzAFN3V3d1V3cDM1V1d1d3dTMAc3d1V3d1NwAwdXVXd3U3ADB1dVd3dTcAc3d1V3d1NzNVdXdXd3U3U3dXd3VXdwNzd3czMzMzAHN3dwMAAAAAc3d3AwAAAAAzMzMDAAAAAA==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "GoldChestplate"
+    },
+    "myImages.image19": {
+        "id": "myImages.image19",
+        "data": "hwQQABAAAAAAAAAAAAAAAAAzMzMzMzMAMFd3d3V3VwMwV3d3VXd3AzB3d3dVd3cDMFd3d3V3VwMwV3czMzMzADB3NwAAAAAAMHc3AAAAAAAwV3czMzMzADBXd3d1d1cDMHd3d1V3dwMwV3d3VXd3AzBXd3d1d1cDADMzMzMzMwAAAAAAAAAAAA==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "GoldLeggings"
+    },
+    "myImages.image21": {
+        "id": "myImages.image21",
+        "data": "hwQQABAAAAAAAAAAAAAAAAAwMzMzMzMAAHNXdXd1dwMwJ3d3d1d3AwBzd3czMzMAADB3NwAAAAAAc1cDAAAAADAndwMAAAAAMCd3AwAAAAAAc1cDAAAAAAAwdzcAAAAAAHN3dzMzMwAwJ3d3d1d3AwBzV3V3dXcDADAzMzMzMwAAAAAAAAAAAA==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "GoldHelmet"
+    },
+    "myImages.image20": {
+        "id": "myImages.image20",
+        "data": "hwQQABAAAAAAAAAAADAzAwAAAAAAMFcDAAAAAAAwVwMAADMzMzNXAwAAU3V3d1cDAAAwdSd3VwMAAAAzMzMzAwAAAAAAAAAAAAAAAAAAAAAAAAAzMzMzAwAAMHUnd1cDAABTdXd3VwMAADMzMzNXAwAAAAAAMFcDAAAAAAAwVwMAAAAAADAzAw==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "GoldBoots"
     }
 }
