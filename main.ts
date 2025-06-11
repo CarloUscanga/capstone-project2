@@ -278,7 +278,7 @@ function hideUsingArray(array: Array<Sprite>){
 function showCurrentStats() {
     if (Battle == false && FREEZE == false) {
         FREEZE = true
-        game.showLongText("123456789",DialogLayout.Bottom)
+        game.showLongText("123456789", DialogLayout.Bottom)
     }
 }
 
