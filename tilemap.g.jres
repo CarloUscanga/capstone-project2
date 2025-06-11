@@ -80,12 +80,21 @@
     },
     "myTiles.tile8": {
         "id": "myTiles.tile8",
-        "data": "hwQQABAAAAC7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7uw==",
+        "data": "hwQQABAAAADd3d3d3d3d3R0RERERERHRHREREREREdEdERERERER0R0RERERERHRHREREREREdEdERERERER0R0RERERERHRHREREREREdEdERERERER0R0RERERERHRHREREREREdEdERERERER0R0RERERERHRHREREREREdHd3d3d3d3d3Q==",
         "dataEncoding": "base64",
         "namespace": "myTiles.",
         "mimeType": "image/x-mkcd-f4",
         "tilemapTile": true,
-        "displayName": "myTile0"
+        "displayName": "InventorySlot"
+    },
+    "myTiles.tile9": {
+        "id": "myTiles.tile9",
+        "data": "hwQQABAAAADd3d3d3d3d3U1ERERERETUTURERERERNRNRERERERE1E1ERERERETUTURERERERNRNRERERERE1E1ERERERETUTURERERERNRNRERERERE1E1ERERERETUTURERERERNRNRERERERE1E1ERERERETUTURERERERNTd3d3d3d3d3Q==",
+        "dataEncoding": "base64",
+        "namespace": "myTiles.",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "ArmorSlot"
     },
     "Battle1": {
         "id": "Battle1",
@@ -114,6 +123,20 @@
             "myTiles.tile4",
             "myTiles.tile5",
             "myTiles.tile6"
+        ]
+    },
+    "level1": {
+        "id": "Inventory",
+        "data": "MTAwYTAwMDgwMDAyMDIwMjAyMDIwMjAyMDIwMjAyMDIwMjAyMDIwMzAzMDMwMzAyMDIwMjAyMDIwMjAzMDMwMzAzMDIwMjAyMDIwMjAyMDIwMjAyMDIwMjAyMDIwMTAxMDEwMTAxMDEwMTAxMDIwMjAxMDEwMTAxMDEwMTAxMDEwMjAyMDEwMTAxMDEwMTAxMDEwMTAyMDIwMjAyMDIwMjAyMDIwMjAyMDIwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMA==",
+        "dataEncoding": "base64",
+        "namespace": "myTiles.",
+        "mimeType": "application/mkcd-tilemap",
+        "displayName": "Inventory",
+        "tileset": [
+            "myTiles.transparency16",
+            "myTiles.tile8",
+            "myTiles.tile7",
+            "myTiles.tile9"
         ]
     }
 }

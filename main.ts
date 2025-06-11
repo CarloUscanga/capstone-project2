@@ -278,7 +278,8 @@ function hideUsingArray(array: Array<Sprite>){
 function showCurrentStats() {
     if (Battle == false && FREEZE == false) {
         FREEZE = true
-        game.showLongText("123456789", DialogLayout.Bottom)
+        Wilson.setFlag(SpriteFlag.RelativeToCamera, true)
+        spriteutils.moveToAtSpeed(Wilson, spriteutils.pos(40,40),100)
     }
 }
 

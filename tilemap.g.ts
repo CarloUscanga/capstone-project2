@@ -165,23 +165,42 @@ f f f f f f f f f f f f f f f f
 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
 `;
             case "myTiles.tile8":
-            case "myTile0":return img`
-b b b b b b b b b b b b b b b b 
-b b b b b b b b b b b b b b b b 
-b b b b b b b b b b b b b b b b 
-b b b b b b b b b b b b b b b b 
-b b b b b b b b b b b b b b b b 
-b b b b b b b b b b b b b b b b 
-b b b b b b b b b b b b b b b b 
-b b b b b b b b b b b b b b b b 
-b b b b b b b b b b b b b b b b 
-b b b b b b b b b b b b b b b b 
-b b b b b b b b b b b b b b b b 
-b b b b b b b b b b b b b b b b 
-b b b b b b b b b b b b b b b b 
-b b b b b b b b b b b b b b b b 
-b b b b b b b b b b b b b b b b 
-b b b b b b b b b b b b b b b b 
+            case "InventorySlot":return img`
+d d d d d d d d d d d d d d d d 
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d 
+d d d d d d d d d d d d d d d d 
+`;
+            case "myTiles.tile9":
+            case "ArmorSlot":return img`
+d d d d d d d d d d d d d d d d 
+d 4 4 4 4 4 4 4 4 4 4 4 4 4 4 d 
+d 4 4 4 4 4 4 4 4 4 4 4 4 4 4 d 
+d 4 4 4 4 4 4 4 4 4 4 4 4 4 4 d 
+d 4 4 4 4 4 4 4 4 4 4 4 4 4 4 d 
+d 4 4 4 4 4 4 4 4 4 4 4 4 4 4 d 
+d 4 4 4 4 4 4 4 4 4 4 4 4 4 4 d 
+d 4 4 4 4 4 4 4 4 4 4 4 4 4 4 d 
+d 4 4 4 4 4 4 4 4 4 4 4 4 4 4 d 
+d 4 4 4 4 4 4 4 4 4 4 4 4 4 4 d 
+d 4 4 4 4 4 4 4 4 4 4 4 4 4 4 d 
+d 4 4 4 4 4 4 4 4 4 4 4 4 4 4 d 
+d 4 4 4 4 4 4 4 4 4 4 4 4 4 4 d 
+d 4 4 4 4 4 4 4 4 4 4 4 4 4 4 d 
+d 4 4 4 4 4 4 4 4 4 4 4 4 4 4 d 
+d d d d d d d d d d d d d d d d 
 `;
         }
         return null;
@@ -226,6 +245,8 @@ namespace myTiles {
     export const tile7 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile8 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile9 = image.ofBuffer(hex``);
 
     helpers._registerFactory("tilemap", function(name: string) {
         switch(helpers.stringTrim(name)) {
@@ -267,6 +288,17 @@ namespace myTiles {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, [myTiles.transparency16,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4,myTiles.tile5,myTiles.tile6], TileScale.Sixteen);
+            case "level":
+            case "level1":return tiles.createTilemap(hex`0a0008000202020202020202020202020202030303030202020202020303030302020202020202020202020202010101010101010102020101010101010101020201010101010101010202020202020202020202`, img`
+. . . . . . . . . . 
+. . . . . . . . . . 
+. . . . . . . . . . 
+. . . . . . . . . . 
+. . . . . . . . . . 
+. . . . . . . . . . 
+. . . . . . . . . . 
+. . . . . . . . . . 
+`, [myTiles.transparency16,myTiles.tile8,myTiles.tile7,myTiles.tile9], TileScale.Sixteen);
         }
         return null;
     })
@@ -289,8 +321,10 @@ namespace myTiles {
             case "tile6":return myTiles.tile6;
             case "BattleBack":
             case "tile7":return myTiles.tile7;
-            case "myTile0":
+            case "InventorySlot":
             case "tile8":return myTiles.tile8;
+            case "ArmorSlot":
+            case "tile9":return myTiles.tile9;
         }
         return null;
     })
