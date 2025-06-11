@@ -281,9 +281,9 @@ function OpenInventory() {
         OGposition = Wilson.tilemapLocation()
         InventoryOpen = true
         FREEZE = true
-        Wilson.setFlag(SpriteFlag.RelativeToCamera, true)
         tiles.setCurrentTilemap(tilemap`Inventory`)
-        spriteutils.moveToAtSpeed(Wilson, spriteutils.pos(40, 35), 100)
+        Wilson.setFlag(SpriteFlag.RelativeToCamera, true)
+        tiles.placeOnTile(Wilson, tiles.getTileLocation(3, 3))
         hideWithKind(SpriteKind.Enemy)
         hideWithKind(SpriteKind.Ore)
         
