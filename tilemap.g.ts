@@ -288,7 +288,7 @@ namespace myTiles {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, [myTiles.transparency16,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4,myTiles.tile5,myTiles.tile6], TileScale.Sixteen);
-            case "level":
+            case "Inventory":
             case "level1":return tiles.createTilemap(hex`0a0008000202020202020202020202020202030303030202020202020303030302020202020202020202020202010101010101010102020101010101010101020201010101010101010202020202020202020202`, img`
 . . . . . . . . . . 
 . . . . . . . . . . 

@@ -126,7 +126,7 @@
         ]
     },
     "level1": {
-        "id": "Inventory",
+        "id": "level1",
         "data": "MTAwYTAwMDgwMDAyMDIwMjAyMDIwMjAyMDIwMjAyMDIwMjAyMDIwMzAzMDMwMzAyMDIwMjAyMDIwMjAzMDMwMzAzMDIwMjAyMDIwMjAyMDIwMjAyMDIwMjAyMDIwMTAxMDEwMTAxMDEwMTAxMDIwMjAxMDEwMTAxMDEwMTAxMDEwMjAyMDEwMTAxMDEwMTAxMDEwMTAyMDIwMjAyMDIwMjAyMDIwMjAyMDIwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMA==",
         "dataEncoding": "base64",
         "namespace": "myTiles.",
