@@ -25,6 +25,7 @@ let FREEZE = false
 let Battle = false
 let Attacking = false
 let UsingItem = false
+let InventoryOpen = false
 let OGposition: tiles.Location = null
 let Fight = textsprite.create("FIGHT")
 let Items = textsprite.create("ITEMS")
@@ -275,12 +276,27 @@ function hideUsingArray(array: Array<Sprite>){
         array[index].setFlag(SpriteFlag.Invisible, true)
     }
 }
-function showCurrentStats() {
-    if (Battle == false && FREEZE == false) {
+function OpenInventory() {
+    if (Battle == false && InventoryOpen == false) {
+        OGposition = Wilson.tilemapLocation()
+        InventoryOpen = true
         FREEZE = true
         Wilson.setFlag(SpriteFlag.RelativeToCamera, true)
-        spriteutils.moveToAtSpeed(Wilson, spriteutils.pos(40,40),100)
+        tiles.setCurrentTilemap(tilemap`Inventory`)
+        spriteutils.moveToAtSpeed(Wilson, spriteutils.pos(40, 35), 100)
+        hideWithKind(SpriteKind.Enemy)
+        hideWithKind(SpriteKind.Ore)
+        
+    } else if (InventoryOpen === true) {
+        InventoryOpen = false
+        Wilson.setFlag(SpriteFlag.RelativeToCamera, false)
+        tiles.setCurrentTilemap(tilemap`level3`)
+        spriteutils.moveToAtSpeed(Wilson, OGposition, 100)
+        showWithKind(SpriteKind.Enemy)
+        showWithKind(SpriteKind.Ore)
+        FREEZE = false
     }
+    
 }
 
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function(player: Player, mob: Monster) {
@@ -324,7 +340,7 @@ browserEvents.onMouseMove(function(x: number, y: number) {
     Cursor.setPosition(x,y)
 })
 browserEvents.R.onEvent(browserEvents.KeyEvent.Pressed, function () {
-    showCurrentStats()
+    OpenInventory()
 })
 
 tiles.setCurrentTilemap(tilemap`level3`)
