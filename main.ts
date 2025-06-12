@@ -283,7 +283,7 @@ function OpenInventory() {
         FREEZE = true
         tiles.setCurrentTilemap(tilemap`Inventory`)
         Wilson.setFlag(SpriteFlag.RelativeToCamera, true)
-        tiles.placeOnTile(Wilson, tiles.getTileLocation(3, 3))
+        tiles.placeOnTile(Wilson, tiles.getTileLocation(2, 2))
         hideWithKind(SpriteKind.Enemy)
         hideWithKind(SpriteKind.Ore)
         
@@ -291,7 +291,7 @@ function OpenInventory() {
         InventoryOpen = false
         Wilson.setFlag(SpriteFlag.RelativeToCamera, false)
         tiles.setCurrentTilemap(tilemap`level3`)
-        spriteutils.moveToAtSpeed(Wilson, OGposition, 100)
+        
         showWithKind(SpriteKind.Enemy)
         showWithKind(SpriteKind.Ore)
         FREEZE = false
