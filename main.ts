@@ -350,6 +350,7 @@ function BattleWon() {
     showWithKind(SpriteKind.Ore)
     Wilson.setFlag(SpriteFlag.RelativeToCamera,false)
     tiles.setCurrentTilemap(tilemap`level3`)
+    coverSpawnTiles()
     tiles.placeOnTile(Wilson, OGposition)
     ResetStats()
     FREEZE = false
