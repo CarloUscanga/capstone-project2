@@ -100,6 +100,26 @@ class Player extends sprites.ExtendableSprite{
             game.gameOver(false)
         }
     }
+    MagickHit(): void{
+        CurrentHP = this.hitpoints
+        for (let index = 0; this.hitpoints > CurrentHP - Attacker.magiks; index++) {
+                this.hitpoints--
+                for (let index = 0; Bar.value > Math.round((this.hitpoints / this.maxHP) * 100); index++) {
+                    if (Bar.value <= 0) {
+                        game.setGameOverMessage(false, "You got beat to a pulp")
+                        game.gameOver(false)
+                        break
+                    }
+                    Bar.value--
+                    BarLabel.setLabel(this.hitpoints + "/" + this.maxHP)
+                    pause(10)
+                }
+        }
+        if (Bar.value == 0) {
+            game.setGameOverMessage(false, "You got beat to a pulp")
+            game.gameOver(false)
+        }
+    }
 
 }
 class Monster extends sprites.ExtendableSprite{
@@ -265,6 +285,7 @@ function startBattle(player: Player, monster: Monster){
 
 }
 function MonsterTurn() {
+    
     Wilson.PhysicalHit(FightingMob)
 }
 function BattleWon() {
