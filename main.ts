@@ -312,12 +312,12 @@ function startBattle(player: Player, monster: Monster){
 }
 function AddArmorStats(array: Upgrades[]) {
     for (let index = 0; index < array.length; index++) {
-        Wilson.hitpoints = Wilson.hitpoints + array[index].HP
-        Wilson.maxHP = Wilson.maxHP + array[index].HP
-        Wilson.defense = Wilson.defense + array[index].defense
-        Wilson.speed = Wilson.speed + array[index].speed
-        Wilson.intelligence = Wilson.intelligence + array[index].intelligence
-        Wilson.strength = Wilson.strength + array[index].attack
+        Wilson.hitpoints = 5 + array[index].HP
+        Wilson.maxHP = 5 + array[index].HP
+        Wilson.defense = 1 + array[index].defense
+        Wilson.speed = 1 + array[index].speed
+        Wilson.intelligence = 1 + array[index].intelligence
+        Wilson.strength = 2 + array[index].attack
 
     }
 }
