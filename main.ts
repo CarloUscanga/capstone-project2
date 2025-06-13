@@ -9,6 +9,7 @@ let Gear: Armor = null
 let ore: Ore = null
 let Spawner = 0
 let CurrentHP = 0
+let MonsterAttackPicker = 0
 let location: tiles.Location = null
 let WeakMobs = [assets.image`Zombie`,assets.image`Spider`]
 let Mobs = [assets.image`Zombie`, assets.image`Spider`, assets.image`Skeleton`,
@@ -100,7 +101,7 @@ class Player extends sprites.ExtendableSprite{
             game.gameOver(false)
         }
     }
-    MagickHit(): void{
+    MagickHit(Attacker:Monster){
         CurrentHP = this.hitpoints
         for (let index = 0; this.hitpoints > CurrentHP - Attacker.magiks; index++) {
                 this.hitpoints--
@@ -285,8 +286,13 @@ function startBattle(player: Player, monster: Monster){
 
 }
 function MonsterTurn() {
+    MonsterAttackPicker = randint(0, 5)
+    if (MonsterAttackPicker < 5) {
+        Wilson.PhysicalHit(FightingMob)
+    } else {
+        Wilson.MagickHit(FightingMob)
+    }
     
-    Wilson.PhysicalHit(FightingMob)
 }
 function BattleWon() {
     hideUsingArray(FightMenu)
