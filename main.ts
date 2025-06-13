@@ -68,6 +68,15 @@ class Upgrades extends sprites.ExtendableSprite{
     speed: number
     attack: number
     intelligence: number
+    
+    constructor(image: Image, kind: number) {
+        super(image, kind)
+        this.defense = 5
+        this.HP = 5
+        this.speed = 5
+        this.attack = 5 
+        this.intelligence = 5
+    }
 }
 class Player extends sprites.ExtendableSprite{
     hitpoints: number 
