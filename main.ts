@@ -111,6 +111,9 @@ class Monster extends sprites.ExtendableSprite{
     speed: number
 
     PhysicalHit(): void {
+        if (Wilson.speed < Attacker.speed) {
+            MonsterTurn()
+        }
         CurrentHP = this.hitpoints
         if (Wilson.strength <= this.defense) {
             this.hitpoints--
@@ -142,11 +145,13 @@ class Monster extends sprites.ExtendableSprite{
             
             }
         }
-        if (MBar.value > 0) {
+        if (MBar.value > 0 && Wilson.speed > this.speed) {
             showUsingArray(FightMenu)
             MonsterTurn()
         } else if (Battle === true && MBar.value == 0) {
             BattleWon()
+        } else if (MBar.value > 0 && Wilson.speed < this.speed) {
+            showUsingArray(FightMenu)
         }
         
 
@@ -154,7 +159,33 @@ class Monster extends sprites.ExtendableSprite{
 
     }
     MagickHit(): void {
-        
+        if (Wilson.speed < Attacker.speed) {
+            MonsterTurn()
+        }
+        CurrentHP = this.hitpoints
+        for (let index = 0; this.hitpoints > CurrentHP - Wilson.intelligence; index++) {
+            this.hitpoints--
+            for (let index = 0; MBar.value > Math.round((this.hitpoints / this.maxHP) * 100); index++) {
+                if (MBar.value <= 0) {
+                    BattleWon()
+                    break
+                }
+                MBar.value--
+                MBarLabel.setLabel(this.hitpoints + "/" + this.maxHP)
+                pause(10)
+                
+            
+            }
+            
+        }
+        if (MBar.value > 0 && Wilson.speed > this.speed) {
+            showUsingArray(FightMenu)
+            MonsterTurn()
+        } else if (Battle === true && MBar.value == 0) {
+            BattleWon()
+        } else if (MBar.value > 0 && Wilson.speed < this.speed) {
+            showUsingArray(FightMenu)
+        }
     }
     
     constructor(image: Image, kind: number){
