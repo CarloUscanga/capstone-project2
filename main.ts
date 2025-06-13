@@ -30,6 +30,7 @@ let OGposition: tiles.Location = null
 let Fight = textsprite.create("FIGHT")
 let Items = textsprite.create("ITEMS")
 let Attack1 = textsprite.create("PUNCH")
+let Inventory: Sprite[] = []
 let FightMenu: TextSprite[] =[Fight,Items]
 let AttackMenu: TextSprite[] = [Attack1]
 let Bar: StatusBarSprite = null
@@ -291,12 +292,12 @@ function OpenInventory() {
         InventoryOpen = false
         Wilson.setFlag(SpriteFlag.RelativeToCamera, false)
         tiles.setCurrentTilemap(tilemap`level3`)
-        
+        tiles.placeOnTile(Wilson,OGposition)
         showWithKind(SpriteKind.Enemy)
         showWithKind(SpriteKind.Ore)
         FREEZE = false
     }
-    
+
 }
 
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function(player: Player, mob: Monster) {
