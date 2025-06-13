@@ -9,7 +9,7 @@ let Gear: Upgrades = null
 let ore: Ore = null
 let Spawner = 0
 let CurrentHP = 0
-let NumberOfPotions = 0
+let NumberOfPotions = 3
 let MonsterAttackPicker = 0
 let location: tiles.Location = null
 let WeakMobs = [assets.image`Zombie`,assets.image`Spider`]
@@ -419,17 +419,17 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
      move(CollisionDirection.Left)
     }
 })
-browserEvents.MouseLeft.onEvent(browserEvents.MouseButtonEvent.Pressed, function(x: number, y: number) {
-    if (Math.abs(x - Fight.x) <= 10 && Math.abs(y - Fight.y) <= 10 && Battle === true && Attacking === false){
+browserEvents.MouseLeft.onEvent(browserEvents.MouseButtonEvent.Pressed, function (x: number, y: number) {
+    if (Math.abs(x - Fight.x) <= 10 && Math.abs(y - Fight.y) <= 10 && Battle === true && Attacking === false) {
         hideUsingArray(FightMenu)
-        showUsingArray(AttackMenu)    
+        showUsingArray(AttackMenu)
         Attacking = true
     } else if (Math.abs(x - Attack1.x) <= 10 && Math.abs(y - Attack1.y) <= 10 && Battle === true && Attacking === true) {
         Attacking = false
         hideUsingArray(AttackMenu)
         FightingMob.PhysicalHit()
 
-    } else if( Math.abs(x - Attack2.x) <= 10 && Math.abs(y - Attack2.y) <= 10 && Battle === true && Attacking === true) {
+    } else if (Math.abs(x - Attack2.x) <= 10 && Math.abs(y - Attack2.y) <= 10 && Battle === true && Attacking === true) {
         Attacking = false
         hideUsingArray(AttackMenu)
         FightingMob.MagickHit()
@@ -440,27 +440,32 @@ browserEvents.MouseLeft.onEvent(browserEvents.MouseButtonEvent.Pressed, function
     } else if (Math.abs(x - UsePotion.x) <= 10 && Math.abs(y - UsePotion.y) <= 10 && Battle === true && UsingItem === true) {
         UsingItem = false
         hideUsingArray(ItemMenu)
-        if (NumberOfPotions > 0) {  
+        if (NumberOfPotions > 0) {
             if (Wilson.hitpoints < Wilson.maxHP) {
                 Wilson.hitpoints += 5
-                 game.showLongText("You use a health potion!", DialogLayout.Bottom)
                 NumberOfPotions--
+                game.showLongText("You use a health potion! You have " + NumberOfPotions + " potions left.", DialogLayout.Bottom)
+                
                 if (Wilson.hitpoints > Wilson.maxHP) {
                     Wilson.hitpoints = Wilson.maxHP
                 }
                 Bar.value = Math.round((Wilson.hitpoints / Wilson.maxHP) * 100)
                 BarLabel.setLabel(Wilson.hitpoints + "/" + Wilson.maxHP)
+                showUsingArray(FightMenu)
+            } else if (Wilson.hitpoints >= Wilson.maxHP) {
+                game.showLongText("You are already at full health!", DialogLayout.Bottom)
+                showUsingArray(FightMenu)
             }
-            } else {
-            game.showLongText("You are already at full health!", DialogLayout.Bottom)
-            }
+        
         } else {
-        game.showLongText("You have no potions left!", DialogLayout.Bottom)
+            game.showLongText("You have no potions left!", DialogLayout.Bottom)
+            showUsingArray(FightMenu)
         }
-        showUsingArray(FightMenu)
     }
+}
 
-})
+
+)
 browserEvents.onMouseMove(function(x: number, y: number) {
     Cursor.setPosition(x,y)
 })
@@ -487,7 +492,7 @@ for (let value of tiles.getTilesByType(assets.tile`LootTile`)) {
     spawnLoot(value,ArmorArray)
 }
 
-
+UsingItem = false
 Wilson = new Player(assets.image`Wilson`,SpriteKind.Player)
 Wilson.hitpoints = 5
 Wilson.maxHP = 5
@@ -501,7 +506,7 @@ Fight.setFlag(SpriteFlag.RelativeToCamera, true)
 Items.setFlag(SpriteFlag.RelativeToCamera, true)
 Cursor.setFlag(SpriteFlag.RelativeToCamera,true)
 Fight.setPosition(20, 80)
-UsePotion.setPosition(30, 90)
+UsePotion.setPosition(50, 90)
 Attack1.setPosition(20, 80)
 Attack2.setPosition(20, 105)
 Items.setPosition(20,105)
