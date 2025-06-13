@@ -485,7 +485,6 @@ function OpenInventory() {
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (player: Player, Upgrade: Upgrades) {
     if (Upgrade.showing === true) {
-        Upgrade.say("Pick up with A", 1000)
         if (controller.A.isPressed()&& Inventory.length < 24) {
             Inventory.push(Upgrade)
             game.showLongText("You pick up it up!", DialogLayout.Bottom)
@@ -641,3 +640,10 @@ Attack1.setPosition(20, 80)
 Attack2.setPosition(20, 105)
 Items.setPosition(20,105)
 hideWithKind(SpriteKind.Text)
+game.showLongText("Use the arrow keys to move around, and R to open your inventory.", DialogLayout.Bottom)
+game.showLongText("You can pick up health potions or armor by walking over them and pressing A.", DialogLayout.Bottom)
+game.showLongText("in the Inventory, use the cursor to select items.", DialogLayout.Bottom)
+game.showLongText("You can equip armor by placing it in the armor slots in your inventory.", DialogLayout.Bottom)
+game.showLongText("You can attack monsters by clicking on the FIGHT button, then selecting an attack.", DialogLayout.Bottom)
+game.showLongText("You can also use health potions by clicking on the ITEMS button, then using the potion.", DialogLayout.Bottom)
+
