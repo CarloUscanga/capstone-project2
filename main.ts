@@ -51,10 +51,10 @@ let BarLabel: StatusBarSprite = null
 let MBarLabel: StatusBarSprite = null
 let ZombieStats = [5, 1, 3, 2, 2]
 let SpiderStats = [4, 1, 2, 2, 3]
-let SkeletonStats = [3, 2, 4, 1, 5]
-let WitchStats = [6, 5, 3, 4, 4]
-let WizardStats = [7, 6, 4, 4, 5]
-let StoneGolemStats = [12, 4, 10, 10, 1]
+let SkeletonStats = [4, 2, 4, 1, 5]
+let WitchStats = [22, 5, 3, 4, 4]
+let WizardStats = [25, 6, 4, 4, 5]
+let StoneGolemStats = [50, 4, 10, 10, 1]
 let Wilson : Player = null
 let Cursor = sprites.create(assets.image`Cursor`,SpriteKind.Cursor)
 
