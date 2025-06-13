@@ -405,6 +405,23 @@ function hideUsingArray(array: Array<Sprite>){
         array[index].setFlag(SpriteFlag.Invisible, true)
     }
 }
+function coverSpawnTiles() {
+    for (let value of tiles.getTilesByType(assets.tile`WeakSpawnTile`)) {
+        tiles.setTileAt(value, assets.tile`FillerTile`)
+    }
+    for (let value of tiles.getTilesByType(assets.tile`SpawnTile`)) {
+        tiles.setTileAt(value, assets.tile`FillerTile`)
+    }
+    for (let value of tiles.getTilesByType(assets.tile`StrongSpawnTile`)) {
+        tiles.setTileAt(value, assets.tile`FillerTile`)
+    }
+    for (let value of tiles.getTilesByType(assets.tile`OreTile`)) {
+    tiles.setTileAt(value, assets.tile`FillerTile`)
+    }
+    for (let value of tiles.getTilesByType(assets.tile`LootTile`)) {
+    tiles.setTileAt(value, assets.tile`FillerTile`)
+    }
+}
 function OpenInventory() {
     if (Battle == false && InventoryOpen == false) {
         OGposition = Wilson.tilemapLocation()
@@ -447,6 +464,7 @@ function OpenInventory() {
         Cursor.setFlag(SpriteFlag.RelativeToCamera, true)
         Wilson.setFlag(SpriteFlag.RelativeToCamera, false)
         tiles.setCurrentTilemap(tilemap`level3`)
+        coverSpawnTiles()
         tiles.placeOnTile(Wilson,OGposition)
         showWithKind(SpriteKind.Enemy)
         showWithKind(SpriteKind.Ore)
@@ -602,6 +620,7 @@ for (let value of tiles.getTilesByType(assets.tile`LootTile`)) {
     tiles.setTileAt(value, assets.tile`FillerTile`)
 }
 UsingItem = false
+Inventory = []
 Wilson = new Player(assets.image`Wilson`,SpriteKind.Player)
 ResetStats()
 scene.cameraFollowSprite(Wilson)
