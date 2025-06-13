@@ -112,20 +112,35 @@ class Monster extends sprites.ExtendableSprite{
 
     PhysicalHit(): void {
         CurrentHP = this.hitpoints
-        for (let index = 0; this.hitpoints > CurrentHP - Wilson.strength; index++){
+        if (Wilson.strength <= this.defense) {
             this.hitpoints--
-            for (let index = 0; MBar.value > Math.round((this.hitpoints / this.maxHP) * 100); index++){
+            for (let index = 0; MBar.value > Math.round((this.hitpoints / this.maxHP) * 100); index++) {
                 if (MBar.value <= 0) {
                     BattleWon()
                     break
                 }
                 MBar.value--
-                MBarLabel.setLabel(this.hitpoints+"/"+this.maxHP)
+                MBarLabel.setLabel(this.hitpoints + "/" + this.maxHP)
                 pause(10)
                 
             
             }
+        } else {
+            for (let index = 0; this.hitpoints > CurrentHP - (Wilson.strength-this.defense); index++) {
+                this.hitpoints--
+                for (let index = 0; MBar.value > Math.round((this.hitpoints / this.maxHP) * 100); index++) {
+                    if (MBar.value <= 0) {
+                        BattleWon()
+                        break
+                    }
+                    MBar.value--
+                    MBarLabel.setLabel(this.hitpoints + "/" + this.maxHP)
+                    pause(10)
+                
             
+                }
+            
+            }
         }
         if (MBar.value > 0) {
             showUsingArray(FightMenu)
@@ -137,6 +152,9 @@ class Monster extends sprites.ExtendableSprite{
 
         
 
+    }
+    MagickHit(): void {
+        
     }
     
     constructor(image: Image, kind: number){
