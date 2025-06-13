@@ -293,6 +293,7 @@ function startBattle(player: Player, monster: Monster){
     FightingMob = monster
     OGposition = Wilson.tilemapLocation()
     tiles.setCurrentTilemap(tilemap`Battle`)
+    hideWithKind(SpriteKind.Food)
     hideWithKind(SpriteKind.Enemy)
     hideWithKind(SpriteKind.Ore)
     FightingMob.setFlag(SpriteFlag.Invisible,false)
@@ -353,6 +354,7 @@ function BattleWon() {
     coverSpawnTiles()
     tiles.placeOnTile(Wilson, OGposition)
     ResetStats()
+    showWithKind(SpriteKind.Food)
     FREEZE = false
     Battle = false
     
@@ -437,7 +439,10 @@ function OpenInventory() {
         InventorySpace = 0
         ArmorSpace = 0
         for (let value of tiles.getTilesByType(assets.tile`InventorySlot`)) {
-            
+            if (Inventory.length == 0) {
+                hideWithKind(SpriteKind.Food)
+                break
+            }
             InventorySpace++
             if (InventorySpace <= Inventory.length) {
                 Inventory[InventorySpace - 1].setFlag(SpriteFlag.Invisible, false)
@@ -469,6 +474,7 @@ function OpenInventory() {
         tiles.placeOnTile(Wilson,OGposition)
         showWithKind(SpriteKind.Enemy)
         showWithKind(SpriteKind.Ore)
+        showWithKind(SpriteKind.Food)
         for (let index = 0; index < Inventory.length; index++) {
             Inventory[index].setFlag(SpriteFlag.Invisible, true)
             Inventory[index].showing = false
