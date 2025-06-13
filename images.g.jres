@@ -47,14 +47,6 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Skeleton"
     },
-    "myImages.image8": {
-        "id": "myImages.image8",
-        "data": "hwQQABAAAAAAAAAAAAAAAAAAMDMzMwAAADAzNEQ0AAAAM0QzSTQAAACTRJNJNAMAAENEM0REAwAAQzQzREQDAABDM0SURAMAADBDRJRJAwAAMERJlEQDAAAwSUk0RAMAADBJRDRDAwAAAJNEREMDAAAAMEREMwMAAAAwMzMzAAAAAAAAAAAAAA==",
-        "dataEncoding": "base64",
-        "namespace": "myImages.",
-        "mimeType": "image/x-mkcd-f4",
-        "displayName": "Rock Outcrop"
-    },
     "myImages.image3": {
         "id": "myImages.image3",
         "data": "hwQQABAAAAAAAAAAMDMzAwAAADDT2Z0DAAAzM92Z3QMAM9M52Z0zAzDT3T3TPZM9M+3dnTPTnZnT3e2dk93dndPd3Z3T3T0zk93dOZPdnTmT2d45k93dmTPT3Tk5MzOZADPdOd3dPdMAMDM53Z3ZPQAAMDPTmd0zAAAAADMzPQMAAAAAADAzAA==",
@@ -166,5 +158,13 @@
         "namespace": "myImages.",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "GoldBoots"
+    },
+    "myImages.image8": {
+        "id": "myImages.image8",
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDd3d0AAAAALSIiIg0AUNAiIiIi0gBV3SIiIiLSAFUAIiIiItIAVQAiIiIi0gBVACIiIiLSAFXdIiIiItIAUNAiIiIi0gAAAC0iIiINAAAA0N3d3QAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "dataEncoding": "base64",
+        "namespace": "myImages.",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Rock Outcrop"
     }
 }

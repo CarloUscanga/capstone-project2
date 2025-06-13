@@ -59,7 +59,7 @@ let Wilson : Player = null
 let Cursor = sprites.create(assets.image`Cursor`,SpriteKind.Cursor)
 
 class Ore extends sprites.ExtendableSprite{
-    miningTimes: number
+
 }
 class Upgrades extends sprites.ExtendableSprite{
     showing: boolean
@@ -473,6 +473,14 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (player: Player, 
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (player: Player, mob: Monster) {
     startBattle(player, mob)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Ore, function (player: Player, Potion: Ore) {
+    Potion.say("Pick up with A", 1000)
+    if (controller.A.isPressed()) {
+        NumberOfPotions++
+        game.showLongText("You pick up a health potion! You have " + NumberOfPotions + " potions left.", DialogLayout.Bottom)
+        Potion.destroy()
+    }
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function() {
     if (FREEZE === false){
