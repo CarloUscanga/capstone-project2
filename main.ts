@@ -582,29 +582,30 @@ tiles.setCurrentTilemap(tilemap`level3`)
 
 for (let value of tiles.getTilesByType(assets.tile`WeakSpawnTile`)){
     spawnWeak(value)
+    tiles.setTileAt(value, assets.tile`FillerTile`)
 }
 for (let value of tiles.getTilesByType(assets.tile`SpawnTile`)) {
     spawnMobs(value)
+    tiles.setTileAt(value, assets.tile`FillerTile`)
 }
 for (let value of tiles.getTilesByType(assets.tile`StrongSpawnTile`)) {
     spawnStrong(value)
+    tiles.setTileAt(value, assets.tile`FillerTile`)
 }
 for (let value of tiles.getTilesByType(assets.tile`OreTile`)) {
     ore = new Ore(assets.image`Rock Outcrop`,SpriteKind.Ore)
     tiles.placeOnTile(ore, value)
+    tiles.setTileAt(value, assets.tile`FillerTile`)
 }
 for (let value of tiles.getTilesByType(assets.tile`LootTile`)) {
-    spawnLoot(value,ArmorArray)
-}
-for (let value of tiles.getTilesByType(assets.tile`SpawnTile0`)) {
-    tiles.placeOnTile(Wilson, value)
-    
+    spawnLoot(value, ArmorArray)
+    tiles.setTileAt(value, assets.tile`FillerTile`)
 }
 UsingItem = false
 Wilson = new Player(assets.image`Wilson`,SpriteKind.Player)
 ResetStats()
 scene.cameraFollowSprite(Wilson)
-tiles.placeOnTile(Wilson, tiles.getTileLocation(0, 0))
+tiles.placeOnTile(Wilson, tiles.getTileLocation(16, 18))
 Fight.setFlag(SpriteFlag.RelativeToCamera, true)
 Items.setFlag(SpriteFlag.RelativeToCamera, true)
 Cursor.setFlag(SpriteFlag.RelativeToCamera,true)
