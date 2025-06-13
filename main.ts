@@ -9,6 +9,7 @@ let Gear: Upgrades = null
 let ore: Ore = null
 let Spawner = 0
 let CurrentHP = 0
+let NumberOfPotions = 0
 let MonsterAttackPicker = 0
 let location: tiles.Location = null
 let WeakMobs = [assets.image`Zombie`,assets.image`Spider`]
@@ -32,9 +33,11 @@ let Fight = textsprite.create("FIGHT")
 let Items = textsprite.create("ITEMS")
 let Attack1 = textsprite.create("PUNCH")
 let Attack2 = textsprite.create("MAGICK")
+let UsePotion = textsprite.create("HEALTH POTION")
 let Inventory: Sprite[] = []
 let FightMenu: TextSprite[] =[Fight,Items]
 let AttackMenu: TextSprite[] = [Attack1, Attack2]
+let ItemMenu: TextSprite[] = [UsePotion]
 let Bar: StatusBarSprite = null
 let MBar: StatusBarSprite = null
 let BarLabel: StatusBarSprite = null
@@ -393,8 +396,8 @@ function OpenInventory() {
 
 }
 
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function(player: Player, mob: Monster) {
-    startBattle(player,mob)
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (player: Player, mob: Monster) {
+    startBattle(player, mob)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function() {
     if (FREEZE === false){
@@ -430,8 +433,32 @@ browserEvents.MouseLeft.onEvent(browserEvents.MouseButtonEvent.Pressed, function
         Attacking = false
         hideUsingArray(AttackMenu)
         FightingMob.MagickHit()
+    } else if (Math.abs(x - Items.x) <= 10 && Math.abs(y - Items.y) <= 10 && Battle === true && UsingItem === false && Attacking === false) {
+        UsingItem = true
+        hideUsingArray(FightMenu)
+        showUsingArray(ItemMenu)
+    } else if (Math.abs(x - UsePotion.x) <= 10 && Math.abs(y - UsePotion.y) <= 10 && Battle === true && UsingItem === true) {
+        UsingItem = false
+        hideUsingArray(ItemMenu)
+        if (NumberOfPotions > 0) {  
+            if (Wilson.hitpoints < Wilson.maxHP) {
+                Wilson.hitpoints += 5
+                 game.showLongText("You use a health potion!", DialogLayout.Bottom)
+                NumberOfPotions--
+                if (Wilson.hitpoints > Wilson.maxHP) {
+                    Wilson.hitpoints = Wilson.maxHP
+                }
+                Bar.value = Math.round((Wilson.hitpoints / Wilson.maxHP) * 100)
+                BarLabel.setLabel(Wilson.hitpoints + "/" + Wilson.maxHP)
+            }
+            } else {
+            game.showLongText("You are already at full health!", DialogLayout.Bottom)
+            }
+        } else {
+        game.showLongText("You have no potions left!", DialogLayout.Bottom)
+        }
+        showUsingArray(FightMenu)
     }
-   
 
 })
 browserEvents.onMouseMove(function(x: number, y: number) {
@@ -473,8 +500,9 @@ tiles.placeOnTile(Wilson, tiles.getTileLocation(0, 0))
 Fight.setFlag(SpriteFlag.RelativeToCamera, true)
 Items.setFlag(SpriteFlag.RelativeToCamera, true)
 Cursor.setFlag(SpriteFlag.RelativeToCamera,true)
-Fight.setPosition(20,80)
+Fight.setPosition(20, 80)
+UsePotion.setPosition(30, 90)
 Attack1.setPosition(20, 80)
-Attack2.setPosition(20, 100)
+Attack2.setPosition(20, 105)
 Items.setPosition(20,105)
 hideWithKind(SpriteKind.Text)
