@@ -44,7 +44,6 @@ let WitchStats = [6, 5, 3, 4, 4]
 let WizardStats = [7, 6, 4, 4, 5]
 let StoneGolemStats = [12, 4, 10, 10, 1]
 let Wilson : Player = null
-
 let Cursor = sprites.create(assets.image`Cursor`,SpriteKind.Cursor)
 
 class Ore extends sprites.ExtendableSprite{
@@ -57,15 +56,12 @@ class Potion extends sprites.ExtendableSprite{
     speed: number
     defense: number
 }
-class Weapon extends sprites.ExtendableSprite{
-    attack: number
-    durability: number
-    intelligence: number
-}
-class Armor extends sprites.ExtendableSprite{
+class Upgrades extends sprites.ExtendableSprite{
     defense: number
     durability: number
     speed: number
+    attack: number
+    intelligence: number
 }
 class Player extends sprites.ExtendableSprite{
     hitpoints: number 
@@ -77,17 +73,26 @@ class Player extends sprites.ExtendableSprite{
 
     PhysicalHit(Attacker: Monster) {
         CurrentHP = this.hitpoints
-        for (let index = 0; this.hitpoints > CurrentHP - Attacker.strength; index++){
+        if (Attacker.strength <= this.defense) {
             this.hitpoints--
-            for (let index = 0; Bar.value > Math.round((this.hitpoints / this.maxHP) * 100); index++){
-                if (Bar.value <= 0) {
-                    game.setGameOverMessage(false, "You got beat to a pulp")
-                    game.gameOver(false)
-                    break
-                }
+            for (let index = 0; Bar.value > Math.round((this.hitpoints / this.maxHP) * 100); index++) {
                 Bar.value--
                 BarLabel.setLabel(this.hitpoints + "/" + this.maxHP)
                 pause(10)
+            }
+        } else {
+            for (let index = 0; this.hitpoints > CurrentHP - (Attacker.strength-this.defense); index++) {
+                this.hitpoints--
+                for (let index = 0; Bar.value > Math.round((this.hitpoints / this.maxHP) * 100); index++) {
+                    if (Bar.value <= 0) {
+                        game.setGameOverMessage(false, "You got beat to a pulp")
+                        game.gameOver(false)
+                        break
+                    }
+                    Bar.value--
+                    BarLabel.setLabel(this.hitpoints + "/" + this.maxHP)
+                    pause(10)
+                }
             }
         }
         if (Bar.value == 0) {
@@ -173,7 +178,7 @@ function spawnWeak(spawnTile: tiles.Location){
 }
 function spawnLoot(spawnTile: tiles.Location, type: Image[]) { 
     Spawner = randint(0, type.length - 1)
-    Gear = new Armor(type[Spawner], SpriteKind.Food)
+    Gear = new Upgrades(type[Spawner], SpriteKind.Food)
     tiles.placeOnTile(Gear,spawnTile)
     
 }
