@@ -1,10 +1,12 @@
 namespace SpriteKind {
     export const Ore = SpriteKind.create()
     export const Cursor = SpriteKind.create()
+    export const Potion = SpriteKind.create()
 }
 
 let Mob: Monster = null
 let FightingMob: Monster = null
+let ClickedGear: Upgrades = null
 let Gear: Upgrades = null
 let ore: Ore = null
 let Spawner = 0
@@ -12,6 +14,7 @@ let CurrentHP = 0
 let NumberOfPotions = 3
 let MonsterAttackPicker = 0
 let InventorySpace = 0
+let ArmorSpace = 0
 let location: tiles.Location = null
 let WeakMobs = [assets.image`Zombie`,assets.image`Spider`]
 let Mobs = [assets.image`Zombie`, assets.image`Spider`, assets.image`Skeleton`,
@@ -29,6 +32,7 @@ let Battle = false
 let Attacking = false
 let UsingItem = false
 let InventoryOpen = false
+let GearClicked = false
 let OGposition: tiles.Location = null
 let OGUpgradePosition: tiles.Location = null
 let Fight = textsprite.create("FIGHT")
@@ -36,7 +40,8 @@ let Items = textsprite.create("ITEMS")
 let Attack1 = textsprite.create("PUNCH")
 let Attack2 = textsprite.create("MAGICK")
 let UsePotion = textsprite.create("HEALTH POTION")
-let Inventory: Sprite[] = []
+let Inventory: Upgrades[] = []
+let ArmorUsed: Upgrades[] = []
 let FightMenu: TextSprite[] =[Fight,Items]
 let AttackMenu: TextSprite[] = [Attack1, Attack2]
 let ItemMenu: TextSprite[] = [UsePotion]
@@ -56,13 +61,10 @@ let Cursor = sprites.create(assets.image`Cursor`,SpriteKind.Cursor)
 class Ore extends sprites.ExtendableSprite{
     miningTimes: number
 }
-class Potion extends sprites.ExtendableSprite{
-    
-}
 class Upgrades extends sprites.ExtendableSprite{
     showing: boolean
     defense: number
-    durability: number
+    HP: number
     speed: number
     attack: number
     intelligence: number
@@ -293,10 +295,29 @@ function startBattle(player: Player, monster: Monster){
     spriteutils.moveToAtSpeed(player, spriteutils.pos(40, 50), 100)
     pause(600)
     showUsingArray(FightMenu)
+    AddArmorStats(ArmorUsed)
     createMobBar(FightingMob,40,FightingMob.hitpoints + "/" + FightingMob.maxHP,StatusBarKind.EnemyHealth)
     createPlayerBar(StatusBarKind.Health)
 
 
+}
+function AddArmorStats(array: Upgrades[]) {
+    for (let index = 0; index < array.length; index++) {
+        Wilson.hitpoints += array[index].HP
+        Wilson.defense += array[index].defense
+        Wilson.speed += array[index].speed
+        Wilson.intelligence += array[index].intelligence
+        Wilson.strength += array[index].attack
+        
+    }
+}
+function ResetStats() {
+    Wilson.hitpoints = 5
+    Wilson.maxHP = 5
+    Wilson.strength = 2
+    Wilson.defense = 1
+    Wilson.intelligence = 1
+    Wilson.speed = 1
 }
 function MonsterTurn() {
     MonsterAttackPicker = randint(0, 5)
@@ -320,6 +341,7 @@ function BattleWon() {
     Wilson.setFlag(SpriteFlag.RelativeToCamera,false)
     tiles.setCurrentTilemap(tilemap`level3`)
     tiles.placeOnTile(Wilson, OGposition)
+    ResetStats()
     FREEZE = false
     Battle = false
     
@@ -376,6 +398,7 @@ function hideUsingArray(array: Array<Sprite>){
 function OpenInventory() {
     if (Battle == false && InventoryOpen == false) {
         OGposition = Wilson.tilemapLocation()
+        Cursor.setFlag(SpriteFlag.RelativeToCamera, false)
         InventoryOpen = true
         FREEZE = true
         tiles.setCurrentTilemap(tilemap`Inventory`)
@@ -384,6 +407,7 @@ function OpenInventory() {
         hideWithKind(SpriteKind.Enemy)
         hideWithKind(SpriteKind.Ore)
         InventorySpace = 0
+        ArmorSpace = 0
         for (let value of tiles.getTilesByType(assets.tile`InventorySlot`)) {
             
             InventorySpace++
@@ -397,9 +421,20 @@ function OpenInventory() {
             }
             
         }
+        for (let value of tiles.getTilesByType(assets.tile`ArmorSlot`)) {
+            if (ArmorSpace < ArmorUsed.length) {
+                ArmorSpace++
+                ArmorUsed[ArmorSpace - 1].setFlag(SpriteFlag.Invisible, false)
+                ArmorUsed[ArmorSpace - 1].showing = true
+                tiles.placeOnTile(ArmorUsed[ArmorSpace - 1], value)
+            } else {
+                break
+            }
+        }
         
     } else if (InventoryOpen === true) {
         InventoryOpen = false
+        Cursor.setFlag(SpriteFlag.RelativeToCamera, true)
         Wilson.setFlag(SpriteFlag.RelativeToCamera, false)
         tiles.setCurrentTilemap(tilemap`level3`)
         tiles.placeOnTile(Wilson,OGposition)
@@ -428,17 +463,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (player: Player, 
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (player: Player, mob: Monster) {
     startBattle(player, mob)
-})
-sprites.onOverlap(SpriteKind.Cursor, SpriteKind.Food, function (player: Player, upgrade: Upgrades) {
-    if (InventoryOpen === true && Upgrades.showing === true) { 
-        OGUpgradePosition = upgrade.tilemapLocation()
-        while (browserEvents.MouseLeft.isPressed()) {
-            Upgrades.follow(Cursor,500,1000)
-        }
-        if (upgrade.tileKindAt(TileDirection.Center, assets.tile`InventorySlot`) === true) {
-            tiles.placeOnTile(upgrade, upgrade.tilemapLocation())
-        }
-    }
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function() {
     if (FREEZE === false){
@@ -503,12 +527,35 @@ browserEvents.MouseLeft.onEvent(browserEvents.MouseButtonEvent.Pressed, function
             showUsingArray(FightMenu)
         }
     }
+    // Find the first visible upgrade in the inventory that overlaps with the cursor
+    let hoveredUpgrade = Inventory.find(upg => upg.showing && Cursor.overlapsWith(upg));
+    if (InventoryOpen === true && hoveredUpgrade && GearClicked === false) {
+        ClickedGear = hoveredUpgrade
+        OGUpgradePosition = ClickedGear.tilemapLocation()
+        GearClicked = true
+    } else if (InventoryOpen === true && GearClicked === true) {
+        if (ClickedGear.tileKindAt(TileDirection.Center, assets.tile`InventorySlot`) === true) {
+            tiles.placeOnTile(ClickedGear, ClickedGear.tilemapLocation())
+            GearClicked = false
+        } else if (ClickedGear.tileKindAt(TileDirection.Center, assets.tile`BattleBack`) === true) {
+            tiles.placeOnTile(ClickedGear, OGUpgradePosition)
+            GearClicked = false
+        } else if (ClickedGear.tileKindAt(TileDirection.Center, assets.tile`ArmorSlot`) === true) {
+            ArmorUsed.push(ClickedGear)
+            tiles.placeOnTile(ClickedGear, ClickedGear.tilemapLocation())
+            GearClicked = false
+        }
+    }
 }
 
 
 )
 browserEvents.onMouseMove(function(x: number, y: number) {
-    Cursor.setPosition(x,y)
+    Cursor.setPosition(x, y)
+    if (GearClicked === true) {
+        ClickedGear.setPosition(x, y)
+    }
+        
 })
 browserEvents.R.onEvent(browserEvents.KeyEvent.Pressed, function () {
     OpenInventory()
@@ -535,12 +582,7 @@ for (let value of tiles.getTilesByType(assets.tile`LootTile`)) {
 
 UsingItem = false
 Wilson = new Player(assets.image`Wilson`,SpriteKind.Player)
-Wilson.hitpoints = 5
-Wilson.maxHP = 5
-Wilson.strength = 2
-Wilson.defense = 1
-Wilson.intelligence = 1
-Wilson.speed = 1
+ResetStats()
 scene.cameraFollowSprite(Wilson)
 tiles.placeOnTile(Wilson, tiles.getTileLocation(0, 0))
 Fight.setFlag(SpriteFlag.RelativeToCamera, true)
