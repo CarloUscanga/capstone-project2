@@ -644,6 +644,7 @@ game.showLongText("Use the arrow keys to move around, and R to open your invento
 game.showLongText("You can pick up health potions or armor by walking over them and pressing A.", DialogLayout.Bottom)
 game.showLongText("in the Inventory, use the cursor to select items.", DialogLayout.Bottom)
 game.showLongText("You can equip armor by placing it in the armor slots in your inventory.", DialogLayout.Bottom)
+game.showLongText("Fight monsters by walking into them.", DialogLayout.Bottom)
 game.showLongText("You can attack monsters by clicking on the FIGHT button, then selecting an attack.", DialogLayout.Bottom)
-game.showLongText("You can also use health potions by clicking on the ITEMS button, then using the potion.", DialogLayout.Bottom)
+game.showLongText("You can also use health potions by clicking on the ITEMS button, then using a potion.", DialogLayout.Bottom)
 
