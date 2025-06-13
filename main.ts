@@ -5,7 +5,7 @@ namespace SpriteKind {
 
 let Mob: Monster = null
 let FightingMob: Monster = null
-let Gear: Armor = null
+let Gear: Upgrades = null
 let ore: Ore = null
 let Spawner = 0
 let CurrentHP = 0
@@ -31,9 +31,10 @@ let OGposition: tiles.Location = null
 let Fight = textsprite.create("FIGHT")
 let Items = textsprite.create("ITEMS")
 let Attack1 = textsprite.create("PUNCH")
+let Attack2 = textsprite.create("MAGICK")
 let Inventory: Sprite[] = []
 let FightMenu: TextSprite[] =[Fight,Items]
-let AttackMenu: TextSprite[] = [Attack1]
+let AttackMenu: TextSprite[] = [Attack1, Attack2]
 let Bar: StatusBarSprite = null
 let MBar: StatusBarSprite = null
 let BarLabel: StatusBarSprite = null
@@ -73,6 +74,7 @@ class Player extends sprites.ExtendableSprite{
     speed: number
 
     PhysicalHit(Attacker: Monster) {
+        game.showLongText("The Monster launches a physical attack!", DialogLayout.Bottom)
         CurrentHP = this.hitpoints
         if (Attacker.strength <= this.defense) {
             this.hitpoints--
@@ -82,6 +84,8 @@ class Player extends sprites.ExtendableSprite{
                 pause(10)
             }
         } else {
+    
+        
             for (let index = 0; this.hitpoints > CurrentHP - (Attacker.strength-this.defense); index++) {
                 this.hitpoints--
                 for (let index = 0; Bar.value > Math.round((this.hitpoints / this.maxHP) * 100); index++) {
@@ -101,7 +105,8 @@ class Player extends sprites.ExtendableSprite{
             game.gameOver(false)
         }
     }
-    MagickHit(Attacker:Monster){
+    MagickHit(Attacker: Monster) {
+        game.showLongText("The Monster launches a magical attack!", DialogLayout.Bottom)
         CurrentHP = this.hitpoints
         for (let index = 0; this.hitpoints > CurrentHP - Attacker.magiks; index++) {
                 this.hitpoints--
@@ -132,9 +137,11 @@ class Monster extends sprites.ExtendableSprite{
     speed: number
 
     PhysicalHit(): void {
-        if (Wilson.speed < Attacker.speed) {
+        
+        if (Wilson.speed < this.speed) {
             MonsterTurn()
         }
+        game.showLongText("You launch a physical attack!", DialogLayout.Bottom)
         CurrentHP = this.hitpoints
         if (Wilson.strength <= this.defense) {
             this.hitpoints--
@@ -166,12 +173,13 @@ class Monster extends sprites.ExtendableSprite{
             
             }
         }
-        if (MBar.value > 0 && Wilson.speed > this.speed) {
-            showUsingArray(FightMenu)
-            MonsterTurn()
-        } else if (Battle === true && MBar.value == 0) {
+        if (Battle === true && MBar.value == 0) {
             BattleWon()
-        } else if (MBar.value > 0 && Wilson.speed < this.speed) {
+            
+        } else if (Wilson.speed > this.speed) {
+            MonsterTurn()
+            showUsingArray(FightMenu)
+        } else if (MBar.value > 0) {
             showUsingArray(FightMenu)
         }
         
@@ -180,9 +188,11 @@ class Monster extends sprites.ExtendableSprite{
 
     }
     MagickHit(): void {
-        if (Wilson.speed < Attacker.speed) {
+        
+        if (Wilson.speed < this.speed) {
             MonsterTurn()
         }
+        game.showLongText("You launch a magical attack!", DialogLayout.Bottom)
         CurrentHP = this.hitpoints
         for (let index = 0; this.hitpoints > CurrentHP - Wilson.intelligence; index++) {
             this.hitpoints--
@@ -199,12 +209,12 @@ class Monster extends sprites.ExtendableSprite{
             }
             
         }
-        if (MBar.value > 0 && Wilson.speed > this.speed) {
-            showUsingArray(FightMenu)
-            MonsterTurn()
-        } else if (Battle === true && MBar.value == 0) {
+        if (Battle === true && MBar.value == 0) {
             BattleWon()
-        } else if (MBar.value > 0 && Wilson.speed < this.speed) {
+        } else if (Wilson.speed > this.speed) {
+            MonsterTurn()
+            showUsingArray(FightMenu)
+        } else if (MBar.value > 0) {
             showUsingArray(FightMenu)
         }
     }
@@ -288,11 +298,13 @@ function startBattle(player: Player, monster: Monster){
 function MonsterTurn() {
     MonsterAttackPicker = randint(0, 5)
     if (MonsterAttackPicker < 5) {
+        
         Wilson.PhysicalHit(FightingMob)
     } else {
+        
         Wilson.MagickHit(FightingMob)
     }
-    
+    pause(1000)
 }
 function BattleWon() {
     hideUsingArray(FightMenu)
@@ -413,7 +425,11 @@ browserEvents.MouseLeft.onEvent(browserEvents.MouseButtonEvent.Pressed, function
         Attacking = false
         hideUsingArray(AttackMenu)
         FightingMob.PhysicalHit()
-        
+
+    } else if( Math.abs(x - Attack2.x) <= 10 && Math.abs(y - Attack2.y) <= 10 && Battle === true && Attacking === true) {
+        Attacking = false
+        hideUsingArray(AttackMenu)
+        FightingMob.MagickHit()
     }
    
 
@@ -458,6 +474,7 @@ Fight.setFlag(SpriteFlag.RelativeToCamera, true)
 Items.setFlag(SpriteFlag.RelativeToCamera, true)
 Cursor.setFlag(SpriteFlag.RelativeToCamera,true)
 Fight.setPosition(20,80)
-Attack1.setPosition(20,80)
+Attack1.setPosition(20, 80)
+Attack2.setPosition(20, 100)
 Items.setPosition(20,105)
 hideWithKind(SpriteKind.Text)
