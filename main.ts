@@ -596,7 +596,9 @@ for (let value of tiles.getTilesByType(assets.tile`OreTile`)) {
 for (let value of tiles.getTilesByType(assets.tile`LootTile`)) {
     spawnLoot(value,ArmorArray)
 }
-
+for (let value of tiles.getTilesByType(assets.tile`SpawnTile`)) {
+    tiles.placeOnTile(Wilson, value)
+}
 UsingItem = false
 Wilson = new Player(assets.image`Wilson`,SpriteKind.Player)
 ResetStats()
