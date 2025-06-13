@@ -475,7 +475,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (player: Player,
     startBattle(player, mob)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Ore, function (player: Player, Potion: Ore) {
-    Potion.say("Pick up with A", 1000)
     if (controller.A.isPressed()) {
         NumberOfPotions++
         game.showLongText("You pick up a health potion! You have " + NumberOfPotions + " potions left.", DialogLayout.Bottom)

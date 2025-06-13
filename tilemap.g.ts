@@ -202,6 +202,25 @@ d 4 4 4 4 4 4 4 4 4 4 4 4 4 4 d
 d 4 4 4 4 4 4 4 4 4 4 4 4 4 4 d 
 d d d d d d d d d d d d d d d d 
 `;
+            case "myTiles.tile10":
+            case "myTile0":return img`
+. . d d d d d d d d d d d . . . 
+. d . . . . . . . . . . d d d . 
+. d . . . . d d d . . . . . d . 
+d . . . . d d . d . . d d d . . 
+d . . . . d . . d . . d . d . . 
+d . . . d . . . d . . d . d . . 
+d . d d . . . . d . d . . d . . 
+d d . . . . d d . . d . . . d . 
+. . . . . d d . . . d . . . d . 
+. . . . d d . . . . d . . . d . 
+. d d . d . . . . . d . . . d . 
+. d . . d . . . . d . . . d . . 
+. d . . . d d d d . . . d d . . 
+. . d . . . . . . . d d . . . . 
+. . d d d d d d d d . . . . . . 
+. . . . . . . . . . . . . . . . 
+`;
         }
         return null;
     })
@@ -247,6 +266,8 @@ namespace myTiles {
     export const tile8 = image.ofBuffer(hex``);
     //% fixedInstance jres blockIdentity=images._tile
     export const tile9 = image.ofBuffer(hex``);
+    //% fixedInstance jres blockIdentity=images._tile
+    export const tile10 = image.ofBuffer(hex``);
 
     helpers._registerFactory("tilemap", function(name: string) {
         switch(helpers.stringTrim(name)) {
@@ -325,6 +346,8 @@ namespace myTiles {
             case "tile8":return myTiles.tile8;
             case "ArmorSlot":
             case "tile9":return myTiles.tile9;
+            case "myTile0":
+            case "tile10":return myTiles.tile10;
         }
         return null;
     })
