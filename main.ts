@@ -11,6 +11,7 @@ let Spawner = 0
 let CurrentHP = 0
 let NumberOfPotions = 3
 let MonsterAttackPicker = 0
+let InventorySpace = 0
 let location: tiles.Location = null
 let WeakMobs = [assets.image`Zombie`,assets.image`Spider`]
 let Mobs = [assets.image`Zombie`, assets.image`Spider`, assets.image`Skeleton`,
@@ -29,6 +30,7 @@ let Attacking = false
 let UsingItem = false
 let InventoryOpen = false
 let OGposition: tiles.Location = null
+let OGUpgradePosition: tiles.Location = null
 let Fight = textsprite.create("FIGHT")
 let Items = textsprite.create("ITEMS")
 let Attack1 = textsprite.create("PUNCH")
@@ -55,13 +57,10 @@ class Ore extends sprites.ExtendableSprite{
     miningTimes: number
 }
 class Potion extends sprites.ExtendableSprite{
-    hitpoints: number
-    strength: number
-    intelligence: number
-    speed: number
-    defense: number
+    
 }
 class Upgrades extends sprites.ExtendableSprite{
+    showing: boolean
     defense: number
     durability: number
     speed: number
@@ -262,6 +261,7 @@ function spawnWeak(spawnTile: tiles.Location){
 function spawnLoot(spawnTile: tiles.Location, type: Image[]) { 
     Spawner = randint(0, type.length - 1)
     Gear = new Upgrades(type[Spawner], SpriteKind.Food)
+    Gear.showing = true
     tiles.placeOnTile(Gear,spawnTile)
     
 }
@@ -383,6 +383,20 @@ function OpenInventory() {
         tiles.placeOnTile(Wilson, tiles.getTileLocation(2, 2))
         hideWithKind(SpriteKind.Enemy)
         hideWithKind(SpriteKind.Ore)
+        InventorySpace = 0
+        for (let value of tiles.getTilesByType(assets.tile`InventorySlot`)) {
+            
+            InventorySpace++
+            if (InventorySpace <= Inventory.length) {
+                Inventory[InventorySpace - 1].setFlag(SpriteFlag.Invisible, false)
+                Inventory[InventorySpace - 1].showing = true
+                tiles.placeOnTile(Inventory[InventorySpace - 1], value)
+            } else {
+                
+                break
+            }
+            
+        }
         
     } else if (InventoryOpen === true) {
         InventoryOpen = false
@@ -391,13 +405,40 @@ function OpenInventory() {
         tiles.placeOnTile(Wilson,OGposition)
         showWithKind(SpriteKind.Enemy)
         showWithKind(SpriteKind.Ore)
+        for (let index = 0; index < Inventory.length; index++) {
+            Inventory[index].setFlag(SpriteFlag.Invisible, true)
+            Inventory[index].showing = false
+        }
         FREEZE = false
     }
 
 }
-
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (player: Player, Upgrade: Upgrades) {
+    if (Upgrade.showing === true) {
+        Upgrade.say("Pick up with A", 1000)
+        if (controller.A.isPressed()&& Inventory.length < 24) {
+            Inventory.push(Upgrade)
+            game.showLongText("You pick up it up!", DialogLayout.Bottom)
+            Upgrade.setFlag(SpriteFlag.Invisible, true)
+            Upgrade.showing = false
+        } else if (controller.A.isPressed() && Inventory.length >= 24) {
+            game.showLongText("You have no room in your inventory!", DialogLayout.Bottom)
+        }   
+    }
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (player: Player, mob: Monster) {
     startBattle(player, mob)
+})
+sprites.onOverlap(SpriteKind.Cursor, SpriteKind.Food, function (player: Player, upgrade: Upgrades) {
+    if (InventoryOpen === true && Upgrades.showing === true) { 
+        OGUpgradePosition = upgrade.tilemapLocation()
+        while (browserEvents.MouseLeft.isPressed()) {
+            Upgrades.follow(Cursor,500,1000)
+        }
+        if (upgrade.tileKindAt(TileDirection.Center, assets.tile`InventorySlot`) === true) {
+            tiles.placeOnTile(upgrade, upgrade.tilemapLocation())
+        }
+    }
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function() {
     if (FREEZE === false){
